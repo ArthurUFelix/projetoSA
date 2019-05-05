@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, world!</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+        <!-- Painel de navegação lateral -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>Títulosinho</h2>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#loja">Loja</a>
+                </li>
+                <li class="active">
+                    <a href="#estoque">Estoque</a>
+                </li>
+                <li>
+                    <a href="#clientes">Clientes</a>
+                </li>
+                <li>
+                    <a href="#vendas">Vendas</a>
+                </li>
+            </ul>
+            
+            <p>Administrativo</p>
+            
+            <ul class="list-unstyled components admin">
+                <li>
+                    <a href="#funcionarios">Funcionários</a>
+                </li>
+                <li>
+                    <a href="#relatorios">Relatórios</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal da pagina -->
+        <div id="content" class="container-fluid">
+            <hr>
+
+            <div class="content-header">
+                <h1>Novo Produto</h1>
+            </div>
+
+            <hr>
+
+            <form id="add-products">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productCod">Código do produto</label>
+                        <input type="text" class="form-control" id="productCod" placeholder="Adicionar código do produto">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productDesc">Descrição</label>
+                        <input type="text" class="form-control" id="productDesc" placeholder="Adicionar descrição">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productQnt">Quantidade</label>
+                        <input type="number" class="form-control" id="productQnt" placeholder="Adicionar quantidade do produto">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productVal">Valor</label>
+                        <input type="text" class="form-control" id="productVal" placeholder="Adicionar valor do produto">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+  </body>
+</html>
