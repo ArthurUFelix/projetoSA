@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nova Venda</title>
+    <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+        <!-- Painel de navegação lateral -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>Títulosinho</h2>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="../loja/index.html">Loja</a>
+                </li>
+                <li>
+                    <a href="../estoque/index.html">Estoque</a>
+                </li>
+                <li>
+                    <a href="../clientes/index.html">Clientes</a>
+                </li>
+                <li class="active">
+                    <a href="../vendas/index.html">Vendas</a>
+                </li>
+            </ul>
+            
+            <p>Administrativo</p>
+            
+            <ul class="list-unstyled components admin">
+                <li>
+                    <a href="../funcionarios/index.html">Funcionários</a>
+                </li>
+                <li>
+                    <a href="../relatorios/index.html">Relatórios</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal da pagina -->
+        <div id="content" class="container-fluid">
+            <!-- <hr> -->
+
+            <header class="jumbotron content-header">
+                <h1>Nova Venda</h1>
+            </header>
+
+            <!-- <hr> -->
+
+            <form id="add-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <h4>Loja</h4>
+                    <input class="form-control" type="text" placeholder="[codLoja] Loja" name="loja" readonly>
+                </div>
+                <div class="form-group">
+                    <h4>Vendedor</h4>
+                    <input class="form-control" type="text" placeholder="[codVendedor] Vendedor" name="vendedor" readonly>
+                    <small id="vendedorHelp" class="text-muted">Verifique se está logado na sua conta antes de realizar a venda!</small>
+                </div>
+                <div class="form-group md-form">
+                    <h4>Produtos</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Digite o código ou o nome do produto">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" id="vendaAdicionar">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+                <table class="table" id="listaProdutos">
+                    <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
+                    <h5>Lista de Produtos</h5>
+                    <div class="text-right">
+                        <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
+                        <h6>Total:</h6>
+                    </div>
+                </table>
+                <div class="custom-control custom-radio">
+                    <div class="form-check">
+                        <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option1" id="radio1" checked>
+                        <label class="custom-control-label" for="radio1">Cadastrado</label>
+                    </div>
+                    <div class="form-check">
+                        <!-- LEMBRAR DE COLOCAR FUNÇÃO PARA ESCONDER CAMPO PROCURAR CLIENTE QUANDO SEM CADASTRO FOR ESCOLHIDO -->
+                        <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option2" id="radio2">
+                        <label class="custom-control-label" for="radio2">Sem cadastro</label>
+                    </div>
+                </div>
+                <div class="form-group md-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Procurar cliente">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" id="clienteAdicionar">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <button class="btn btn-success btn-lg" type="submit">Finalizar Venda</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/libs/jquery.js"></script>
+    <script type="text/javascript" src="../../js/libs/popper.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
+
+    <script type="text/javascript" src="../../js/db.js"></script>
+    <script type="text/javascript" src="../../js/vendas.js"></script>
+  </body>
+</html>
