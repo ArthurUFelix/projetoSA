@@ -17,18 +17,18 @@ $(document).ready(function() {
         }, false);
     });
 
-    $('#add-func-form').submit(function(event){
-        if($('#add-func-form').is(':valid')) {
+    $('#add-client-form').submit(function(event){
+        if($('#add-client-form').is(':valid')) {
             event.preventDefault();
 
             // formata os dados e insere no banco
             let dados = {
-                name: $('#funcName').val(),
-                cod: $('#funcCod').val(),
-                adDate: $('#funcAdDate').val(),
-                cargo: $('#funcCargo').val()
+                name: $('#clientName').val(),
+                address: $('#clientAddress').val(),
+                phone: $('#clientPhone').val(),
+                email: $('#clientEmail').val()
             };
-            bancoInsert("funcionarios", dados);
+            bancoInsert("clientes", dados);
     
             // redireciona o usuário para a tela de estoque
             alert("Dps redirecionar user");
@@ -41,12 +41,12 @@ $(document).ready(function() {
 ***************/
 $(document).ready(function(){
     if(banco) {
-        let funcionarios = banco[0].funcionarios;
-        let tabelaFuncionarios = $('#tabelaFuncionarios tbody');
+        let clientes = banco[0].clientes;
+        let tabelaClientes = $('#tabelaClientes tbody');
 
-        tabelaFuncionarios.text('');
-        funcionarios.forEach(function(item, index){
-            tabelaFuncionarios.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.name+"</td><td>"+item.adDate+"</td><td>"+item.cargo+"</td><td><i class='material-icons color-red'>delete</i><i class='material-icons color-blue'>border_color</i></td></tr>");
+        tabelaClientes.text('');
+        clientes.forEach(function(item, index){
+            tabelaClientes.append("<tr><th scope='row'>"+item.name+"</th><td>"+item.address+"</td><td>"+item.phone+"</td><td>"+item.email+"</td><td><i class='material-icons color-red'>delete</i><i class='material-icons color-blue'>border_color</i></td></tr>");
         });
     }
 });

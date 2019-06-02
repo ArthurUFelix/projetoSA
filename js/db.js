@@ -9,7 +9,8 @@ function getBanco()
     } else {
         return [{
             produtos: [],
-            funcionarios: []
+            funcionarios: [],
+            clientes: []
         }];
     }
 }

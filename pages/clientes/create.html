@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Funcionários - Adicionar</title>
+    <title>Clientes - Adicionar</title>
     <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -25,7 +25,7 @@
                 <li>
                     <a href="../estoque/index.html">Estoque</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../clientes/index.html">Clientes</a>
                 </li>
                 <li>
@@ -36,7 +36,7 @@
             <p>Administrativo</p>
             
             <ul class="list-unstyled components admin">
-                <li class="active">
+                <li>
                     <a href="../funcionarios/index.html">Funcionários</a>
                 </li>
                 <li>
@@ -50,41 +50,41 @@
             <!-- <hr> -->
 
             <header class="jumbotron content-header">
-                <h1>Adicionar Funcionário</h1>
+                <h1>Adicionar Cliente</h1>
             </header>
 
             <!-- <hr> -->
 
-            <form id="add-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
+            <form id="add-client-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="form-group col-md-6 md-form">
-                        <label for="funcName">Nome</label>
-                        <input type="text" class="form-control" id="funcName" required>
+                        <label for="clientName">Nome</label>
+                        <input type="text" class="form-control" id="clientName" required>
                         <div class="invalid-tooltip">
-                            Informe o nome do funcionário.
+                            Informe o nome do cliente.
                         </div>
                     </div>
                     <div class="form-group col-md-6 md-form">
-                        <label for="funcCod">Código</label>
-                        <input type="text" class="form-control" id="funcCod" required>
+                        <label for="clientAddress">Endereço</label>
+                        <input type="text" class="form-control" id="clientAddress" required>
                         <div class="invalid-tooltip">
-                            Informe o código do funcionário.
+                            Informe o endereço do cliente.
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6 md-form">
-                        <input type="date" class="form-control" id="funcAdDate" required>
-                        <label for="funcAdDate">Data de admissão</label>
+                        <label for="clientPhone">Telefone</label>
+                        <input type="number" class="form-control" id="clientPhone" required>
                         <div class="invalid-tooltip">
-                            Informe a data de admissão do funcionário.
+                            Informe o telefone do cliente.
                         </div>
                     </div>
                     <div class="form-group col-md-6 md-form">
-                        <label for="funcCargo">Cargo</label>
-                        <input type="text" class="form-control" id="funcCargo" required>
+                        <label for="clientEmail">Email</label>
+                        <input type="text" class="form-control" id="clientEmail" required>
                         <div class="invalid-tooltip">
-                            Informe o cargo do funcionário.
+                            Informe o telefone do cliente.
                         </div>
                     </div>
                 </div>
@@ -100,6 +100,6 @@
     <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
 
     <script type="text/javascript" src="../../js/db.js"></script>
-    <script type="text/javascript" src="../../js/funcionarios.js"></script>
+    <script type="text/javascript" src="../../js/clientes.js"></script>
   </body>
 </html>
