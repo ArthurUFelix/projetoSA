@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Relatórios</title>
+    <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+        <!-- Painel de navegação lateral -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>Títulosinho</h2>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="../loja/index.html">Loja</a>
+                </li>
+                <li>
+                    <a href="../estoque/index.html">Estoque</a>
+                </li>
+                <li>
+                    <a href="../clientes/index.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="../vendas/index.html">Vendas</a>
+                </li>
+            </ul>
+            
+            <p>Administrativo</p>
+            
+            <ul class="list-unstyled components admin">
+                <li>
+                    <a href="../funcionarios/index.html">Funcionários</a>
+                </li>
+                <li class="active">
+                    <a href="../relatorios/index.html">Relatórios</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal da pagina -->
+        <div id="content" class="container-fluid">
+            <!-- <hr> -->
+
+            <header class="jumbotron content-header">
+                <h1>Relatórios</h1>
+            </header>
+
+            <!-- <hr> -->
+
+            <table id="tabelaFuncionarios" class="table table-hover table-bordered">
+                <thead class="grey lighten-3">
+                    <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Loja</th>
+                    <th scope="col">Funcionário</th>
+                    <th scope="col">Produtos</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/libs/jquery.js"></script>
+    <script type="text/javascript" src="../../js/libs/popper.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
+
+    <script type="text/javascript" src="../../js/db.js"></script>
+    <script type="text/javascript" src="../../js/vendas.js"></script>
+  </body>
+</html>

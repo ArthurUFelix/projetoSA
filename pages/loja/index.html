@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Loja</title>
+    <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+        <!-- Painel de navegação lateral -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>Títulosinho</h2>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="../loja/index.html">Loja</a>
+                </li>
+                <li>
+                    <a href="../estoque/index.html">Estoque</a>
+                </li>
+                <li>
+                    <a href="../clientes/index.html">Clientes</a>
+                </li>
+                <li>
+                    <a href="../vendas/index.html">Vendas</a>
+                </li>
+            </ul>
+            
+            <p>Administrativo</p>
+            
+            <ul class="list-unstyled components admin">
+                <li>
+                    <a href="../funcionarios/index.html">Funcionários</a>
+                </li>
+                <li>
+                    <a href="../relatorios/index.html">Relatórios</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo principal da pagina -->
+        <div id="content" class="container-fluid">
+            <!-- <hr> -->
+
+            <header class="jumbotron content-header">
+                <h1>Informações da loja</h1>
+            </header>
+
+            <!-- <hr> -->
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="lojaName">Nome</label>
+                    <input type="text" class="form-control" id="lojaName" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lojaCnpj">CNPJ</label>
+                    <input type="number" class="form-control" id="lojaCnpj" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="lojaAddress">Endereço</label>
+                    <input type="text" class="form-control" id="lojaAddress" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="lojaPhone">Telefone</label>
+                    <input type="number" class="form-control" id="lojaPhone" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lojaEmail">Email</label>
+                    <input type="email" class="form-control" id="lojaEmail" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="lojaUrl">Endereço Eletrônico (URL do site)</label>
+                    <input type="text" class="form-control" id="lojaUrl" readonly>
+                </div>
+            </div>
+
+            <footer class="content-footer">
+                <a href="edit.html" class="btn btn-block btn-primary">Editar informações</a>
+            </footer>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../js/libs/jquery.js"></script>
+    <script type="text/javascript" src="../../js/libs/popper.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
+
+
+    <script type="text/javascript" src="../../js/db.js"></script>
+    <script type="text/javascript" src="../../js/funcionarios.js"></script>
+  </body>
+</html>
