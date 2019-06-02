@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Estoque</title>
+    <title>Funcionários</title>
     <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -22,7 +22,7 @@
                 <li>
                     <a href="../loja/index.html">Loja</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="../estoque/index.html">Estoque</a>
                 </li>
                 <li>
@@ -36,7 +36,7 @@
             <p>Administrativo</p>
             
             <ul class="list-unstyled components admin">
-                <li>
+                <li class="active">
                     <a href="../funcionarios/index.html">Funcionários</a>
                 </li>
                 <li>
@@ -50,18 +50,18 @@
             <!-- <hr> -->
 
             <header class="jumbotron content-header">
-                <h1>Estoque</h1>
+                <h1>Funcionários</h1>
             </header>
 
             <!-- <hr> -->
 
-            <table id="tabelaProdutos" class="table table-hover table-bordered">
+            <table id="tabelaFuncionarios" class="table table-hover table-bordered">
                 <thead class="grey lighten-3">
                     <tr>
+                    <th scope="col">Nome</th>
                     <th scope="col">Código</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor (R$)</th>
+                    <th scope="col">Data de admissão</th>
+                    <th scope="col">Cargo</th>
                     <th scope="col">-</th>
                     </tr>
                 </thead>
@@ -70,7 +70,7 @@
             </table>
 
             <footer class="content-footer">
-                <a href="create.html" class="btn btn-lg btn-success">Adicionar produto</a>
+                <a href="create.html" class="btn btn-lg btn-success">Adicionar funcionário</a>
             </footer>
 
         </div>
@@ -84,6 +84,6 @@
 
 
     <script type="text/javascript" src="../../js/db.js"></script>
-    <script type="text/javascript" src="../../js/estoque.js"></script>
+    <script type="text/javascript" src="../../js/funcionarios.js"></script>
   </body>
 </html>
