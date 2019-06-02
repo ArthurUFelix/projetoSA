@@ -1,5 +1,9 @@
-$(document).ready(function() {
+var banco = getBanco();
 
+/**************
+    create.html
+***************/
+$(document).ready(function() {
     VMasker($(".maskMoney")).maskMoney({
         // Decimal precision -> "90"
         precision: 2,
@@ -47,5 +51,19 @@ $(document).ready(function() {
             alert("Dps redirecionar user");
         }
     });
+});
 
+/**************
+    index.html
+***************/
+$(document).ready(function(){
+    if(banco) {
+        let produtos = banco[0].produtos;
+        let tabelaProdutos = $('#tabelaProdutos tbody');
+
+        tabelaProdutos.text('');
+        produtos.forEach(function(item, index){
+            tabelaProdutos.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.desc+"</td><td>"+item.qnt+"</td><td>"+item.val+"</td><td><i class='material-icons color-red'>delete</i><i class='material-icons color-blue'>border_color</i></td></tr>");
+        });
+    }
 });

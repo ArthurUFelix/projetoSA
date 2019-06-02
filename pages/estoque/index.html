@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Estoque - Adicionar</title>
+    <title>Estoque</title>
     <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -50,46 +50,29 @@
             <!-- <hr> -->
 
             <header class="jumbotron content-header">
-                <h1>Adicionar Produto</h1>
+                <h1>Estoque</h1>
             </header>
 
             <!-- <hr> -->
 
-            <form id="add-product-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
-                <div class="form-row">
-                    <div class="form-group col-md-6 md-form">
-                        <label for="productCod">Código do produto</label>
-                        <input type="text" class="form-control" id="productCod" required>
-                        <div class="invalid-tooltip">
-                            Informe o código do produto.
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 md-form">
-                        <label for="productDesc">Descrição</label>
-                        <input type="text" class="form-control" id="productDesc" required>
-                        <div class="invalid-tooltip">
-                            Informe a descrição do produto.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 md-form">
-                        <label for="productQnt">Quantidade</label>
-                        <input type="number" class="form-control" id="productQnt" required>
-                        <div class="invalid-tooltip">
-                            Informe a quantidade do produto.
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 md-form">
-                        <label for="productVal">Valor</label>
-                        <input type="text" class="form-control maskMoney" id="productVal" required>
-                        <div class="invalid-tooltip">
-                            Informe o preço do produto.
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block">Adicionar</button>
-            </form>
+            <table id="tabelaProdutos" class="table table-hover table-bordered">
+                <thead class="grey lighten-3">
+                    <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor (R$)</th>
+                    <th scope="col">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <footer class="content-footer">
+                <a href="create.html" class="btn btn-lg btn-success">Adicionar produto</a>
+            </footer>
+
         </div>
     </div>
 
@@ -98,6 +81,7 @@
     <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
+
 
     <script type="text/javascript" src="../../js/db.js"></script>
     <script type="text/javascript" src="../../js/estoque.js"></script>
