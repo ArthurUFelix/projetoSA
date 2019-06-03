@@ -56,34 +56,63 @@
             <!-- <hr> -->
 
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="lojaName">Nome</label>
+                <div class="form-group col-md-9">
+                    <h4 for="lojaName">Nome</h4>
                     <input type="text" class="form-control" id="lojaName" readonly>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="lojaCnpj">CNPJ</label>
+                <div class="form-group col-md-3">
+                    <h4 for="lojaCnpj">CNPJ</h4>
                     <input type="number" class="form-control" id="lojaCnpj" readonly>
                 </div>
             </div>
+            <!-- Preparando os forms pro API do ViaCEP // https://viacep.com.br/ -->
             <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="lojaAddress">Endereço</label>
-                    <input type="text" class="form-control" id="lojaAddress" readonly>
+                <div class="form-group col-md-3">
+                    <h4 for="lojaCEP">CEP</h4>
+                    <input type="text" class="form-control" id="lojaCEP" readonly>
+                </div>
+                <div class="form-group col-md-9">
+                    <h4 for="lojaRua">Rua</h4>
+                    <input type="text" class="form-control" id="lojaRua" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <h4 for="lojaNumero">Número</h4>
+                    <input type="number" class="form-control" id="lojaNumero" readonly>
+                </div>
+                <div class="form-group col-md-5">
+                    <h4 for="lojaComp">Complemento</h4>
+                    <input type="email" class="form-control" id="lojaComp" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <h4 for="lojaBairro">Bairro</h4>
+                    <input type="email" class="form-control" id="lojaBairro" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <h4 for="lojaCidade">Cidade</h4>
+                    <input type="text" class="form-control" id="lojaCidade" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <h4 for="lojaEstado">Estado</h4>
+                    <input type="text" class="form-control" id="lojaEstado" readonly>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="lojaPhone">Telefone</label>
+                    <h4 for="lojaPhone">Telefone</h4>
                     <input type="number" class="form-control" id="lojaPhone" readonly>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="lojaEmail">Email</label>
+                    <h4 for="lojaEmail">Email</h4>
                     <input type="email" class="form-control" id="lojaEmail" readonly>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label for="lojaUrl">Endereço Eletrônico (URL do site)</label>
+                    <h4 for="lojaUrl">Endereço Eletrônico (URL do site)</h4>
                     <input type="text" class="form-control" id="lojaUrl" readonly>
                 </div>
             </div>
