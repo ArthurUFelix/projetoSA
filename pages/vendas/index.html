@@ -15,7 +15,7 @@
         <!-- Painel de navegação lateral -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h2>Títulosinho</h2>
+                <h2>Ragnarok</h2>
             </div>
 
             <ul class="list-unstyled components">
@@ -51,6 +51,7 @@
 
             <header class="jumbotron">
                 <h1 class="display-4">Nova Venda</h1>
+                <button class="btn btn-sm btn-info" id="btnAjuda" data-toggle="button" onclick="ajuda()">Ajuda</button>
             </header>
 
             <!-- <hr> -->
@@ -58,17 +59,17 @@
             <form id="add-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
                 <div class="form-group">
                     <h4>Loja</h4>
-                    <input class="form-control" type="text" placeholder="[codLoja] Loja" name="loja" readonly>
+                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="[Código da Loja] Nome da Loja" placeholder="[codLoja] Loja" name="loja" readonly>
                 </div>
                 <div class="form-group">
                     <h4>Vendedor</h4>
-                    <input class="form-control" type="text" placeholder="[codVendedor] Vendedor" name="vendedor" readonly>
+                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="[Código do Vendedor] Nome do Vendedor" placeholder="[codVendedor] Vendedor" name="vendedor" readonly>
                     <small id="vendedorHelp" class="text-muted">Verifique se está logado na sua conta antes de realizar a venda!</small>
                 </div>
                 <div class="form-group md-form">
                     <h4>Produtos</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Digite o código ou o nome do produto">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Digite o nome do produto e o sistema irá procurá-lo no banco de dados. Depois que encontrá-lo, clique em 'Adicionar'." placeholder="Digite o código ou o nome do produto">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button" id="vendaAdicionar">Adicionar</button>
                         </div>
@@ -77,20 +78,20 @@
                 <table class="table" id="listaProdutos">
                     <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
                     <h5>Lista de Produtos</h5>
-                    <div class="text-right">
                         <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
-                        <h6>Total:</h6>
+                    <h6>Total:</h6>
                     </div>
                 </table>
-                <div class="custom-control custom-radio">
+                <h4>Cliente</h4>
+                <div class="custom-control custom-radio" data-toggle="tooltip" data-placement="left" title="Caso o cliente não tenha cadastro e queira se cadastrar, clique em 'Sem cadastro' e depois em 'Cadastrar novo cliente'.">
                     <div class="form-check">
-                        <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option1" id="radio1" checked>
-                        <label class="custom-control-label" for="radio1">Cadastrado</label>
-                    </div>
+                            <!-- LEMBRAR DE COLOCAR FUNÇÃO PARA ESCONDER CAMPO PROCURAR CLIENTE QUANDO SEM CADASTRO FOR ESCOLHIDO -->
+                            <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option1" id="radio1" checked>
+                            <label class="custom-control-label" for="radio1">Sem cadastro</label>
+                        </div>
                     <div class="form-check">
-                        <!-- LEMBRAR DE COLOCAR FUNÇÃO PARA ESCONDER CAMPO PROCURAR CLIENTE QUANDO SEM CADASTRO FOR ESCOLHIDO -->
                         <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option2" id="radio2">
-                        <label class="custom-control-label" for="radio2">Sem cadastro</label>
+                        <label class="custom-control-label" for="radio2">Cadastrado</label>
                     </div>
                 </div>
                 <div class="form-group md-form">
@@ -116,5 +117,14 @@
 
     <script type="text/javascript" src="../../js/db.js"></script>
     <script type="text/javascript" src="../../js/vendas.js"></script>
+    <script>
+        function ajuda() {
+            if($('#btnAjuda').hasClass('active')){
+                $('[data-toggle="tooltip"]').tooltip('dispose')
+            } else {
+                $('[data-toggle="tooltip"]').tooltip('show')
+            }
+        }
+    </script>
   </body>
 </html>
