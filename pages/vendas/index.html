@@ -51,7 +51,9 @@
 
             <header class="jumbotron">
                 <h1 class="display-4">Nova Venda</h1>
-                <button class="btn btn-sm btn-info" id="btnAjuda" data-toggle="button" onclick="ajuda()">Ajuda</button>
+                <div class="text-right">
+                    <button class="btn btn-sm btn-primary" id="btnAjuda" data-toggle="button" onclick="ajuda()">Ajuda</button>
+                </div>
             </header>
 
             <!-- <hr> -->
@@ -59,31 +61,43 @@
             <form id="add-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
                 <div class="form-group">
                     <h4>Loja</h4>
-                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="[Código da Loja] Nome da Loja" placeholder="[codLoja] Loja" name="loja" readonly>
+                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="left" title="[Código da Loja] Nome da Loja" placeholder="[codLoja] Loja" id="loja" readonly>
                 </div>
                 <div class="form-group">
                     <h4>Vendedor</h4>
-                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="[Código do Vendedor] Nome do Vendedor" placeholder="[codVendedor] Vendedor" name="vendedor" readonly>
-                    <small id="vendedorHelp" class="text-muted">Verifique se está logado na sua conta antes de realizar a venda!</small>
+                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="left" title="Verifique se está logado na sua conta antes de realizar a venda!" placeholder="[codVendedor] Vendedor" id="vendedor" readonly>
                 </div>
                 <div class="form-group md-form">
                     <h4>Produtos</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Digite o nome do produto e o sistema irá procurá-lo no banco de dados. Depois que encontrá-lo, clique em 'Adicionar'." placeholder="Digite o código ou o nome do produto">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="left" title="Digite o nome do produto e o sistema irá procurá-lo no banco de dados. Depois que encontrá-lo, clique em 'Adicionar'." placeholder="Digite o código ou o nome do produto" id="produtos">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button" id="vendaAdicionar">Adicionar</button>
                         </div>
                     </div>
                 </div>
-                <table class="table" id="listaProdutos">
-                    <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
+                <div>
                     <h5>Lista de Produtos</h5>
-                        <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
+                    <table class="table" class="table table-hover table-bordered" id="tabelaProdutos">
+                        <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
+                        <thead class="grey lighten-3">
+                            <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        </table>
+                            <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
                     <h6>Total:</h6>
-                    </div>
+                </div>
                 </table>
                 <h4>Cliente</h4>
-                <div class="custom-control custom-radio" data-toggle="tooltip" data-placement="left" title="Caso o cliente não tenha cadastro e queira se cadastrar, clique em 'Sem cadastro' e depois em 'Cadastrar novo cliente'.">
+                <div class="custom-control custom-radio" data-toggle="tooltip" data-placement="left" title="Caso o cliente não tenha cadastro e queira se cadastrar, clique em 'Sem cadastro' e depois em 'Cadastrar novo cliente'." id="opCliente">
                     <div class="form-check">
                             <!-- LEMBRAR DE COLOCAR FUNÇÃO PARA ESCONDER CAMPO PROCURAR CLIENTE QUANDO SEM CADASTRO FOR ESCOLHIDO -->
                             <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option1" id="radio1" checked>
@@ -96,7 +110,7 @@
                 </div>
                 <div class="form-group md-form">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Procurar cliente">
+                        <input type="text" class="form-control" placeholder="Procurar cliente" id="buscaCliente">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button" id="clienteAdicionar">Adicionar</button>
                         </div>
