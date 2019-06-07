@@ -68,18 +68,18 @@ tr td:last-child {
     min-width: 300px;
     max-width: 300px;
     min-height: 100vh;
-    background: #364f6b;
+    background: #2f3135;
     color: #fafafa;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #1e3147;
+    background: #1f2124;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #72767d;
 }
 
 #sidebar ul.components.admin {
@@ -94,13 +94,13 @@ tr td:last-child {
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: black;
     background: #fff;
 }
 
 #sidebar ul li.active > a {
     color: #fff;
-    background: #2e4661;
+    background: #40444b;
 }
 
 /*
