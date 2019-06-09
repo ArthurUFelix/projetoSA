@@ -48,7 +48,7 @@ $(document).ready(function() {
             bancoInsert("produtos", dados);
     
             // redireciona o usuário para a tela de estoque
-            alert("Dps redirecionar user");
+            window.location = window.location.href.replace("create", "index");
         }
     });
 });
@@ -121,7 +121,7 @@ $(document).ready(function(){
             bancoUpdate("produtos", id, dados);
     
             // redireciona o usuário para a tela de estoque
-            alert("Dps redirecionar user");
+            window.location = window.location.href.replace("edit", "index");
         }
     });
 });
