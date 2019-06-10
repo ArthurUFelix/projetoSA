@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Funcionários</title>
+    <title>Funcionários - Editar</title>
     <link rel="stylesheet" href="../../css/libs/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/libs/mdbootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -50,29 +50,49 @@
             <!-- <hr> -->
 
             <header class="jumbotron">
-                <h1 class="display-4">Funcionários</h1>
+                <h1 class="display-4">Editar Funcionário</h1>
             </header>
 
             <!-- <hr> -->
 
-            <table id="tabelaFuncionarios" class="table table-hover table-bordered">
-                <thead class="grey lighten-3">
-                    <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Data de admissão</th>
-                    <th scope="col">Cargo</th>
-                    <th scope="col">-</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-
-            <footer class="content-footer">
-                <a href="create.html" class="btn btn-lg btn-success">Adicionar funcionário</a>
-            </footer>
-
+            <form id="edit-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
+                <input type="hidden" id="funcId">
+                <div class="form-row">
+                    <div class="form-group col-md-6 md-form">
+                        <label for="funcName">Nome</label>
+                        <input type="text" class="form-control" id="funcName" required>
+                        <div class="invalid-tooltip">
+                            Informe o nome do funcionário.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 md-form">
+                        <label for="funcCod">Código</label>
+                        <input type="text" class="form-control" id="funcCod" required>
+                        <div class="invalid-tooltip">
+                            Informe o código do funcionário.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 md-form">
+                        <input type="date" class="form-control" id="funcAdDate" required>
+                        <label for="funcAdDate">Data de admissão</label>
+                        <div class="invalid-tooltip">
+                            Informe a data de admissão do funcionário.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 md-form">
+                        <label for="funcCargo">Cargo</label>
+                        <input type="text" class="form-control" id="funcCargo" required>
+                        <div class="invalid-tooltip">
+                            Informe o cargo do funcionário.
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary btn-lg">Editar</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -80,8 +100,7 @@
     <script type="text/javascript" src="../../js/libs/popper.min.js"></script>
     <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/libs/sweetalert.min.js"></script>
-
+    <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
 
     <script type="text/javascript" src="../../js/db.js"></script>
     <script type="text/javascript" src="../../js/funcionarios.js"></script>

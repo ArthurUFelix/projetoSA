@@ -48,7 +48,7 @@ $(document).ready(function() {
             bancoInsert("produtos", dados);
     
             // redireciona o usuário para a tela de estoque
-            alert("Dps redirecionar user");
+            window.location = window.location.href.replace("create", "index");
         }
     });
 });
@@ -63,7 +63,65 @@ $(document).ready(function(){
 
         tabelaProdutos.text('');
         produtos.forEach(function(item, index){
-            tabelaProdutos.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.desc+"</td><td>"+item.qnt+"</td><td>"+item.val+"</td><td><i class='material-icons color-red'>delete</i><i class='material-icons color-blue'>border_color</i></td></tr>");
+            tabelaProdutos.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.desc+"</td><td>"+item.qnt+"</td><td>R$ "+item.val+"</td><td><i onclick='deletarProduto("+index+")' class='material-icons color-red'>delete</i><i onclick='editarProduto("+index+")' class='material-icons color-blue'>border_color</i></td></tr>");
         });
     }
+});
+
+function deletarProduto(id) {
+    swal({
+        title: "Você tem certeza?",
+        text: "Não será possível recuperar o dado apagado!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            bancoDelete('produtos', id);
+
+            window.location.reload();
+        }
+    });
+}
+
+function editarProduto(id) {
+    window.location = window.location.href.replace("index", "edit") + "?produto=" + id;
+}
+
+/**************
+    edit.html
+***************/
+$(document).ready(function(){
+    // Procura os dados recebidos
+    if(banco) {
+        let id = window.location.search.split('=')[1];
+        let produto = banco[0].produtos[id];
+
+        // Preenche os campos com os dados do produto
+        $('#productId').val(id);
+        $('#productCod').trigger('focus').val(produto.cod);
+        $('#productDesc').trigger('focus').val(produto.desc);
+        $('#productQnt').trigger('focus').val(produto.qnt);
+        $('#productVal').trigger('focus').val(produto.val);
+    }
+
+    $('#edit-product-form').submit(function(event){
+        if($('#edit-product-form').is(':valid')) {
+            event.preventDefault();
+
+            // formata os dados e insere no banco
+            let dados = {
+                cod: $('#productCod').val(),
+                desc: $('#productDesc').val(),
+                qnt: $('#productQnt').val(),
+                val: $('#productVal').val()
+            };
+            let id = $('#productId').val()
+            bancoUpdate("produtos", id, dados);
+    
+            // redireciona o usuário para a tela de estoque
+            window.location = window.location.href.replace("edit", "index");
+        }
+    });
 });
