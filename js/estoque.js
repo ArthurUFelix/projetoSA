@@ -43,7 +43,7 @@ $(document).ready(function() {
                 cod: $('#productCod').val(),
                 desc: $('#productDesc').val(),
                 qnt: $('#productQnt').val(),
-                val: parseFloat($('#productVal').val().slice(3).replace(',','.'))
+                val: parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
             };
             bancoInsert("produtos", dados);
     
@@ -115,7 +115,7 @@ $(document).ready(function(){
                 cod: $('#productCod').val(),
                 desc: $('#productDesc').val(),
                 qnt: $('#productQnt').val(),
-                val: $('#productVal').val()
+                val: parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
             };
             let id = $('#productId').val()
             bancoUpdate("produtos", id, dados);
