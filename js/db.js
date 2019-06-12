@@ -8,6 +8,7 @@ function getBanco()
         return JSON.parse(localStorage.getItem('banco'));
     } else {
         return [{
+            loja: [{}],
             produtos: [],
             funcionarios: [],
             clientes: []

@@ -1,9 +1,9 @@
 var banco = getBanco();
 
-
 $(document).ready(function() {
+    // Erro vem por default escondido
     $('#error-div').hide();
-    
+
     $('#login-form').submit(function(event) {
         event.preventDefault();
 
@@ -28,9 +28,15 @@ $(document).ready(function() {
             }
         });
 
-        //  Se chegar até aqui, é porque não conseguiu se logar
-        // Apresentar erro
+        //  Se chegar até aqui, é porque não conseguiu se logar, apresenta um erro
         $('#error-div').slideToggle().delay(5000).slideToggle();
-
     });
 });
+
+// Função que verifica se o usuário esta logado, caso não, redireciona-o para a tela de login
+// Função deve ser chamada quando for necessário tal validação
+function verifyAuth() {
+    if(!sessionStorage.getItem('auth')) {
+        
+    }
+}
