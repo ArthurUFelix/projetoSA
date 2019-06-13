@@ -38,37 +38,42 @@ $(document).ready(function() {
     });
     
     $('#edit-loja-form').submit(function(event){
-        if($('#edit-loja-form').is(':valid')) {
-            event.preventDefault();
-    
-            // formata os dados e insere no banco
-            let dados = {
-                nome: $('#lojaName').val(),
-                cnpj: $('#lojaCnpj').val(),
-                cep: $('#lojaCEP').val(),
-                logradouro: $('#lojaLog').val(),
-                numero: $('#lojaNumero').val(),
-                complement: $('#lojaComp').val(),
-                bairro: $('#lojaBairro').val(),
-                cidade: $('#lojaCidade').val(),
-                estado: $('#lojaEstado').val(),
-                telefone: $('#lojaPhone').val(),
-                email: $('#lojaEmail').val(),
-                url: $('#lojaUrl').val()
-            };
-    
-            // Atualiza os dados da loja, estando eles vazios ou n
-            bancoUpdate("loja", 0, dados);
-    
-            // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("edit", "index");
+        event.preventDefault();
+
+        // Se o CEP for válido
+        if($('#lojaCEP').hasClass('ready-to-send')) {
+            if($('#edit-loja-form').is(':valid')) {
+                // formata os dados e insere no banco
+                let dados = {
+                    nome: $('#lojaName').val(),
+                    cnpj: $('#lojaCnpj').val(),
+                    cep: $('#lojaCEP').val(),
+                    logradouro: $('#lojaLog').val(),
+                    numero: $('#lojaNumero').val(),
+                    complement: $('#lojaComp').val(),
+                    bairro: $('#lojaBairro').val(),
+                    cidade: $('#lojaCidade').val(),
+                    estado: $('#lojaEstado').val(),
+                    telefone: $('#lojaPhone').val(),
+                    email: $('#lojaEmail').val(),
+                    url: $('#lojaUrl').val()
+                };
+        
+                // Atualiza os dados da loja, estando eles vazios ou n
+                bancoUpdate("loja", 0, dados);
+        
+                // redireciona o usuário para a tela de estoque
+                window.location = window.location.href.replace("edit", "index");
+            }
+        } else {
+            $('lojaCEP').prop(':invalid')
         }
     });
 
     // Monitora o input de CEP para buscar o endereço
     $('#lojaCEP').keyup(function() {
         // Remove o erro
-        $(this).removeClass('is-invalid is-valid');
+        $(this).removeClass('is-invalid is-valid valid-to-send');
 
         let cep = $(this).val();
 
@@ -78,7 +83,12 @@ $(document).ready(function() {
                 if(data.erro == true) {
                     $('#lojaCEP').addClass('is-invalid');
                 } else {
-                    $('#lojaCEP').addClass('is-valid');
+                    $('#lojaCEP').addClass('is-valid valid-to-send');
+
+                    $('#lojaLog').val(data.logradouro);
+                    $('#lojaBairro').val(data.bairro);
+                    $('#lojaCidade').val(data.localidade);
+                    $('#lojaEstado').val(data.uf);
                 }
             });
         } else {
