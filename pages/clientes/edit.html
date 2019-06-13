@@ -58,35 +58,58 @@
             <form id="edit-client-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
                 <input type="hidden" id="clientId">
                 <div class="form-row">
-                    <div class="form-group col-md-6 md-form">
+                    <div class="form-group md-form col-md-9">
                         <label for="clientName">Nome</label>
                         <input type="text" class="form-control" id="clientName" required>
-                        <div class="invalid-tooltip">
-                            Informe o nome do cliente.
-                        </div>
                     </div>
-                    <div class="form-group col-md-6 md-form">
-                        <label for="clientAddress">Endereço</label>
-                        <input type="text" class="form-control" id="clientAddress" required>
-                        <div class="invalid-tooltip">
-                            Informe o endereço do cliente.
-                        </div>
+                    <div class="form-group md-form col-md-3">
+                        <label for="clientCPF">CNPJ</label>
+                        <input type="number" class="form-control" id="clientCPF" required>
+                    </div>
+                </div>
+                <!-- Preparando os forms pro API do ViaCEP // https://viacep.com.br/ -->
+                <div class="form-row">
+                    <div class="form-group md-form col-md-3">
+                        <label for="clientCEP">CEP</label>
+                        <input type="text" class="form-control" id="clientCEP" required>
+                    </div>
+                    <div class="form-group md-form col-md-9">
+                        <label for="clientLog">Logradouro</label>
+                        <input type="text" class="form-control" id="clientLog" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6 md-form">
+                    <div class="form-group md-form col-md-3">
+                        <label for="clientNumero">Número</label>
+                        <input type="number" class="form-control" id="clientNumero" required>
+                    </div>
+                    <div class="form-group md-form col-md-5">
+                        <label for="clientComp">Complemento</label>
+                        <input type="email" class="form-control" id="clientComp" required>
+                    </div>
+                    <div class="form-group md-form col-md-4">
+                        <label for="clientBairro">Bairro</label>
+                        <input type="email" class="form-control" id="clientBairro" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group md-form col-md-8">
+                        <label for="clientCidade">Cidade</label>
+                        <input type="text" class="form-control" id="clientCidade" required>
+                    </div>
+                    <div class="form-group md-form col-md-4">
+                        <label for="clientUF">UF</label>
+                        <input type="text" class="form-control" id="clientUF" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group md-form col-md-6">
                         <label for="clientPhone">Telefone</label>
                         <input type="number" class="form-control" id="clientPhone" required>
-                        <div class="invalid-tooltip">
-                            Informe o telefone do cliente.
-                        </div>
                     </div>
-                    <div class="form-group col-md-6 md-form">
+                    <div class="form-group md-form col-md-6">
                         <label for="clientEmail">Email</label>
                         <input type="email" class="form-control" id="clientEmail" required>
-                        <div class="invalid-tooltip">
-                            Informe o email do cliente.
-                        </div>
                     </div>
                 </div>
                 <div class="text-right">
