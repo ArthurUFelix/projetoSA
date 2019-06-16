@@ -61,7 +61,7 @@ $(document).ready(function() {
             bancoUpdate("loja", 0, dados);
     
             // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("edit", "index");
+            location = location.href.replace("edit", "index");
         }
     });
 

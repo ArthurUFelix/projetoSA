@@ -48,7 +48,7 @@ $(document).ready(function() {
             bancoInsert("produtos", dados);
     
             // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("create", "index");
+            location = location.href.replace("create", "index");
         }
     });
 });
@@ -80,13 +80,13 @@ function deletarProduto(id) {
         if (willDelete) {
             bancoDelete('produtos', id);
 
-            window.location.reload();
+            location.reload();
         }
     });
 }
 
 function editarProduto(id) {
-    window.location = window.location.href.replace("index", "edit") + "?produto=" + id;
+    location = location.href.replace("index", "edit") + "?produto=" + id;
 }
 
 /**************
@@ -103,7 +103,7 @@ $(document).ready(function(){
         $('#productCod').trigger('focus').val(produto.cod);
         $('#productDesc').trigger('focus').val(produto.desc);
         $('#productQnt').trigger('focus').val(produto.qnt);
-        $('#productVal').trigger('focus').val(produto.val);
+        $('#productVal').trigger('focus').val(produto.val * 100).trigger('keyup');
     }
 
     $('#edit-product-form').submit(function(event){
@@ -121,7 +121,7 @@ $(document).ready(function(){
             bancoUpdate("produtos", id, dados);
     
             // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("edit", "index");
+            location = location.href.replace("edit", "index").replace(location.search, '');
         }
     });
 });

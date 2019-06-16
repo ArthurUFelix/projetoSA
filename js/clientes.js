@@ -24,14 +24,55 @@ $(document).ready(function() {
             // formata os dados e insere no banco
             let dados = {
                 name: $('#clientName').val(),
-                address: $('#clientAddress').val(),
+                cpf: $('#clientCPF').val(),
+                cep: $('#clientCEP').val(),
+                logradouro: $('#clientLog').val(),
+                numero: $('#clientNumero').val(),
+                complemento: $('#clientComp').val(),
+                bairro: $('#clientBairro').val(),
+                cidade: $('#clientCidade').val(),
+                estado: $('#clientEstado').val(),
                 phone: $('#clientPhone').val(),
                 email: $('#clientEmail').val()
             };
             bancoInsert("clientes", dados);
     
             // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("create", "index");
+            location = location.href.replace("create", "index");
+        }
+    });
+
+    // Monitora o input de CEP para buscar o endereço
+    $('#clientCEP').keyup(function() {
+        // Remove o erro
+        $(this).removeClass('is-invalid is-valid');
+        $(this).removeAttr('pattern');
+
+        let cep = $(this).val();
+
+        if(cep.length == 8) {
+            $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {
+                if(data.erro == true) {
+                    $('#client').addClass('is-invalid');
+                    $(this).attr('pattern', 'blocked');
+
+                    return false
+                } else {
+                    $('#clientCEP').addClass('is-valid');
+
+                    $('#clientLog').val(data.logradouro).trigger('focus');
+                    $('#clientBairro').val(data.bairro).trigger('focus');
+                    $('#clientCidade').val(data.localidade).trigger('focus');
+                    $('#clientEstado').val(data.uf).trigger('focus');
+
+                    return true
+                }
+            });
+        } else {
+            $(this).addClass('is-invalid');
+            $(this).attr('pattern', 'blocked');
+
+            return false
         }
     });
 });
@@ -69,7 +110,7 @@ function deletarCliente(id) {
 }
 
 function editarCliente(id) {
-    window.location = window.location.href.replace("index", "edit") + "?client=" + id;
+    location = location.href.replace("index", "edit") + "?client=" + id;
 }
 
 /**************
@@ -84,7 +125,14 @@ $(document).ready(function(){
         // Preenche os campos com os dados do cliente
         $('#clientId').val(id);
         $('#clientName').trigger('focus').val(cliente.name);
-        $('#clientAddress').trigger('focus').val(cliente.address);
+        $('#clientCPF').trigger('focus').val(cliente.cpf);
+        $('#clientCEP').trigger('focus').val(cliente.cep);
+        $('#clientLog').trigger('focus').val(cliente.logradouro);
+        $('#clientNumero').trigger('focus').val(cliente.numero);
+        $('#clientComp').trigger('focus').val(cliente.complemento);
+        $('#clientBairro').trigger('focus').val(cliente.bairro);
+        $('#clientCidade').trigger('focus').val(cliente.cidade);
+        $('#clientEstado').trigger('focus').val(cliente.estado);
         $('#clientPhone').trigger('focus').val(cliente.phone);
         $('#clientEmail').trigger('focus').val(cliente.email);
     }
@@ -96,7 +144,14 @@ $(document).ready(function(){
             // formata os dados e insere no banco
             let dados = {
                 name: $('#clientName').val(),
-                address: $('#clientAddress').val(),
+                cpf: $('#clientCPF').val(),
+                cep: $('#clientCEP').val(),
+                logradouro: $('#clientLog').val(),
+                numero: $('#clientNumero').val(),
+                complemento: $('#clientComp').val(),
+                bairro: $('#clientBairro').val(),
+                cidade: $('#clientCidade').val(),
+                estado: $('#clientEstado').val(),
                 phone: $('#clientPhone').val(),
                 email: $('#clientEmail').val()
             };
@@ -104,7 +159,7 @@ $(document).ready(function(){
             bancoUpdate("clientes", id, dados);
     
             // redireciona o usuário para a tela de estoque
-            window.location = window.location.href.replace("edit", "index");
+            location = location.href.replace("edit", "index").replace(location.search, '');
         }
     });
 });
