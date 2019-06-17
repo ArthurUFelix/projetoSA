@@ -134,5 +134,13 @@
 
     <script type="text/javascript" src="../../js/db.js"></script>
     <script type="text/javascript" src="../../js/loja.js"></script>
+
+    <script>
+
+    if ($("#index-loja-form").serialize() == ""){
+        location = location.href.replace("index", "edit");
+    }
+    
+    </script>
   </body>
 </html>
