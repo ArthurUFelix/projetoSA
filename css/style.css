@@ -121,3 +121,11 @@ header.content-header {
 footer.content-footer a {
     float: right;
 }
+
+#divCard {
+    margin: auto;
+}
+
+#lojaIndexBtn {
+    margin-top: 20px;
+}
