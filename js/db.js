@@ -7,10 +7,11 @@ function getBanco()
     {
         return JSON.parse(localStorage.getItem('banco'));
     } else {
+        // Cria o usuário master por padrão
         return [{
             loja: [{}],
             produtos: [],
-            funcionarios: [],
+            funcionarios: [{name: "Admin", cod: "0", adDate: "1010-10-10", cargo: "Gerente", admin: "true"}],
             clientes: []
         }];
     }

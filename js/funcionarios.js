@@ -4,19 +4,6 @@ var banco = getBanco();
     create.html
 ***************/
 $(document).ready(function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
-
     $('#add-func-form').submit(function(event){
         if($('#add-func-form').is(':valid')) {
             event.preventDefault();
@@ -26,8 +13,12 @@ $(document).ready(function() {
                 name: $('#funcName').val(),
                 cod: $('#funcCod').val(),
                 adDate: $('#funcAdDate').val(),
-                cargo: $('#funcCargo').val()
+                cargo: $('#funcCargo').val(),
+                admin: false
             };
+
+            if(dados.cargo == "Gerente") dados.admin = true;
+
             bancoInsert("funcionarios", dados);
     
             // redireciona o usuário para a tela de estoque
@@ -83,10 +74,10 @@ $(document).ready(function(){
 
         // Preenche os campos com os dados do funcionario
         $('#funcId').val(id);
-        $('#funcName').trigger('focus').val(funcionario.name);
-        $('#funcCod').trigger('focus').val(funcionario.cod);
-        $('#funcAdDate').trigger('focus').val(funcionario.adDate);
-        $('#funcCargo').trigger('focus').val(funcionario.cargo);
+        $('#funcCod').val(funcionario.cod).trigger('focus');
+        $('#funcAdDate').val(funcionario.adDate).trigger('focus');
+        $('#funcCargo').val(funcionario.cargo).trigger('focus');
+        $('#funcName').val(funcionario.name).trigger('focus');
     }
 
     $('#edit-func-form').submit(function(event){
