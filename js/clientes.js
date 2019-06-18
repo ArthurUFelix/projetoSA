@@ -4,19 +4,6 @@ var banco = getBanco();
     create.html
 ***************/
 $(document).ready(function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
-
     $('#add-client-form').submit(function(event){
         if($('#add-client-form').is(':valid')) {
             event.preventDefault();
@@ -124,17 +111,17 @@ $(document).ready(function(){
 
         // Preenche os campos com os dados do cliente
         $('#clientId').val(id);
-        $('#clientName').trigger('focus').val(cliente.name);
-        $('#clientCPF').trigger('focus').val(cliente.cpf);
-        $('#clientCEP').trigger('focus').val(cliente.cep);
-        $('#clientLog').trigger('focus').val(cliente.logradouro);
-        $('#clientNumero').trigger('focus').val(cliente.numero);
-        $('#clientComp').trigger('focus').val(cliente.complemento);
-        $('#clientBairro').trigger('focus').val(cliente.bairro);
-        $('#clientCidade').trigger('focus').val(cliente.cidade);
-        $('#clientEstado').trigger('focus').val(cliente.estado);
-        $('#clientPhone').trigger('focus').val(cliente.phone);
-        $('#clientEmail').trigger('focus').val(cliente.email);
+        $('#clientName').val(cliente.name).trigger('focus');
+        $('#clientCPF').val(cliente.cpf).trigger('focus');
+        $('#clientCEP').val(cliente.cep).trigger('focus');
+        $('#clientLog').val(cliente.logradouro).trigger('focus');
+        $('#clientNumero').val(cliente.numero).trigger('focus');
+        $('#clientComp').val(cliente.complemento).trigger('focus');
+        $('#clientBairro').val(cliente.bairro).trigger('focus');
+        $('#clientCidade').val(cliente.cidade).trigger('focus');
+        $('#clientEstado').val(cliente.estado).trigger('focus');
+        $('#clientPhone').val(cliente.phone).trigger('focus');
+        $('#clientEmail').val(cliente.email).trigger('focus');
     }
 
     $('#edit-client-form').submit(function(event){

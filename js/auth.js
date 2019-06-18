@@ -4,6 +4,12 @@ $(document).ready(function() {
     // Erro vem por default escondido
     $('#error-div').hide();
 
+    // Se houver parâmetro de erro
+    if(location.search.substring(1)) {
+        alert("Você precisa estar logado para acessar esta página!");
+        location = location.href.split('?')[0];
+    }
+
     $('#login-form').submit(function(event) {
         event.preventDefault();
 
@@ -23,7 +29,7 @@ $(document).ready(function() {
                         admin: false
                     }
                     sessionStorage.setItem('auth', JSON.stringify(auth));
-                    window.location = window.location.href.replace('login.html', 'loja/index.html');
+                    location = location.href.replace('login.html', 'loja/index.html');
                 }
             }
         });
@@ -36,7 +42,10 @@ $(document).ready(function() {
 // Função que verifica se o usuário esta logado, caso não, redireciona-o para a tela de login
 // Função deve ser chamada quando for necessário tal validação
 function verifyAuth() {
+    var rootPath = location.href.split("pages");
+    var loginPath = rootPath[0] + "pages/login.html?authError";
+
     if(!sessionStorage.getItem('auth')) {
-        
+        window.open(loginPath, "_self");
     }
 }
