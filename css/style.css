@@ -129,3 +129,7 @@ footer.content-footer a {
 #lojaIndexBtn {
     margin-top: 20px;
 }
+
+.sidebar-footer {
+    bottom: 10px;
+}
