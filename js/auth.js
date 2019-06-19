@@ -65,5 +65,5 @@ $(document).ready(function() {
 
     // Busca os dados do usuário para colocar na sidebar
     $('#authNome').text(user.userData.name);
-    $('#authCod').text(user.userData.name);
+    $('#authCod').text(user.userData.cod);
 });
