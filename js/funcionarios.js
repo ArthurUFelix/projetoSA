@@ -13,7 +13,7 @@ $(document).ready(function() {
                 name: $('#funcName').val(),
                 cod: $('#funcCod').val(),
                 adDate: $('#funcAdDate').val(),
-                cargo: $('#funcCargo').val(),
+                cargo: $('#funcCargo option:selected').text(),
                 admin: false
             };
 
