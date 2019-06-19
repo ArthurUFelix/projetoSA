@@ -26,7 +26,7 @@ $(document).ready(function() {
                     let auth = {
                         valid: true,
                         userData: item,
-                        admin: false
+                        admin: item.admin
                     }
                     sessionStorage.setItem('auth', JSON.stringify(auth));
                     location = location.href.replace('login.html', 'loja/index.html');
@@ -49,3 +49,12 @@ function verifyAuth() {
         window.open(loginPath, "_self");
     }
 }
+
+// Bloquear funções que são apenas para adiministradores
+$(document).ready(function() {
+    var userData = JSON.parse(sessionStorage.getItem('auth'));
+    var isAdmin = userData.admin;
+    if(userData.admin == false) {
+        $('.admin-content').hide();
+    }
+});
