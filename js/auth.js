@@ -50,11 +50,20 @@ function verifyAuth() {
     }
 }
 
-// Bloquear funções que são apenas para adiministradores
+function logout() {
+    sessionStorage.removeItem('auth');
+    location.reload();
+}
+
+// Bloquear funções que são apenas para adiministradores e mostrar dados do usuário logado
 $(document).ready(function() {
-    var userData = JSON.parse(sessionStorage.getItem('auth'));
-    var isAdmin = userData.admin;
-    if(userData.admin == false) {
+    var user = JSON.parse(sessionStorage.getItem('auth'));
+    var isAdmin = user.admin;
+    if(user.admin == false) {
         $('.admin-content').hide();
     }
+
+    // Busca os dados do usuário para colocar na sidebar
+    $('#authNome').text(user.userData.name);
+    $('#authCod').text(user.userData.name);
 });
