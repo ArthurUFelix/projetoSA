@@ -45,6 +45,12 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="sidebar-footer text-center">
+                <h5 id="funcNome">Pedro Moratelli</h5>
+                <h6 id="funcCod">14532</h6>
+                <button class="btn btn-sm btn-danger" id="btnLogout" onclick="logout()">Logout</button>
+            </div>
         </nav>
 
         <!-- Conteúdo principal da pagina -->
@@ -60,15 +66,15 @@
                     <div class="card-body">
                         <h4 class="card-title" id="nome"></h4>
                         <h5 class="card-subtitle mb-2 text-muted" id="cnpj">CNPJ: 23.365.881/0001-40</h5></br>
-                        <h6 class="" id="logcomp">Av. Buriti, 680. Bloco B, 806.</h6>
-                        <h6 class="" id="cidade">Itacorubi. Florianópolis, SC.</h6>
-                        <h6 class="" id="cep">88034-500</h6></br>
-                        <h6 id="telefone">(48) 88149048</h6>
-                        <h6 id="email">worldgames@camelo.com.br</h6>  
-                        <h6 id="url">http://muambas.com.br</h6>      
+                        <h6 class="" id="logcomp"></h6>
+                        <h6 class="" id="cidade"></h6>
+                        <h6 class="" id="cep"></h6></br>
+                        <h6 id="telefone"></h6>
+                        <h6 id="email"></h6>  
+                        <h6><a href="" id="url" target="_blank">http://muambas.com.br</a></h6>      
                     </div>
                 </div>
-                
+
                 <footer class="content-footer" id="lojaIndexBtn">
                     <a href="edit.html" class="btn btn-block btn-primary">Editar informações</a>
                 </footer>
@@ -100,6 +106,7 @@
         $("cep").text(dados.cep);
         $("#telefone").text("☎️" + dados.telefone);
         $("#email").text("✉️" + dados.email);
+        $("#url").attr("href", dados.url);
         $("#url").text(dados.url);
 
     });
