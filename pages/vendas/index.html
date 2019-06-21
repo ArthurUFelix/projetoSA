@@ -66,63 +66,57 @@
 
             <!-- <hr> -->
 
-            <form id="add-func-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
+            <form id="add-vendas-form" role="form" data-toggle="validator" class="needs-validation" novalidate>
                 <div class="form-group">
                     <h4>Loja</h4>
-                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="left" title="[Código da Loja] Nome da Loja" placeholder="[codLoja] Loja" id="loja" readonly>
+                    <input class="form-control" type="text" data-toggle="tooltip" title="[Código da Loja] Nome da Loja" placeholder="[codLoja] Loja" id="loja" readonly>
                 </div>
                 <div class="form-group">
-                    <h4>Vendedor</h4>
-                    <input class="form-control" type="text" data-toggle="tooltip" data-placement="left" title="Verifique se está logado na sua conta antes de realizar a venda!" placeholder="[codVendedor] Vendedor" id="vendedor" readonly>
+                    <h4>Código do Vendedor</h4>
+                    <input class="form-control" type="text" data-toggle="tooltip" title="Verifique se está logado na sua conta antes de realizar a venda!" placeholder="[codVendedor] Vendedor" id="vendedor" readonly>
                 </div>
                 <div class="form-group md-form">
                     <h4>Produtos</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="left" title="Digite o nome do produto e o sistema irá procurá-lo no banco de dados. Depois que encontrá-lo, clique em 'Adicionar'." placeholder="Digite o código ou o nome do produto" id="produtos">
+                        <input type="text" class="form-control" data-toggle="tooltip" title="Digite o nome do produto e o sistema irá procurá-lo no banco de dados. Depois que encontrá-lo, clique em 'Adicionar'." placeholder="Digite o nome do produto" id="productName">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="vendaAdicionar">Adicionar</button>
+                            <button class="btn btn-primary" type="button" id="findProducts">Localizar</button>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h5>Lista de Produtos</h5>
-                    <table class="table" class="table table-hover table-bordered" id="tabelaProdutos">
-                        <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
-                        <thead class="grey lighten-3">
-                            <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">-</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        </table>
-                            <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
-                    <h6>Total:</h6>
+                <div id="showProducts" class="container overflow-auto">
+
                 </div>
+                <h5>Lista de Produtos</h5>
+                <table class="table" class="table table-hover" id="tabelaProdutos">
+                    <!-- COLOCAR UMA LISTA COM JQUERY DOS PRODUTOS ADICIONADOS, QUANTIDADE, ETC. -->
+                    <thead class="grey lighten-3">
+                        <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Quantidade em estoque</th>
+                        <th scope="col">Quantidade para venda</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">-</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                        <!-- ATUALIZAR O TOTAL A PARTIR DA LISTA DINÂMICA -->
+                <h6>Valor total: R$ <span id="showTotalPrice"></span></h6>
                 </table>
                 <h4>Cliente</h4>
-                <div class="custom-control custom-radio" data-toggle="tooltip" data-placement="left" title="Caso o cliente não tenha cadastro e queira se cadastrar, clique em 'Sem cadastro' e depois em 'Cadastrar novo cliente'." id="opCliente">
-                    <div class="form-check">
-                            <!-- LEMBRAR DE COLOCAR FUNÇÃO PARA ESCONDER CAMPO PROCURAR CLIENTE QUANDO SEM CADASTRO FOR ESCOLHIDO -->
-                            <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option1" id="radio1" checked>
-                            <label class="custom-control-label" for="radio1">Sem cadastro</label>
-                        </div>
-                    <div class="form-check">
-                        <input class="custom-control-input" type="radio" name="clienteFormCheck" value="option2" id="radio2">
-                        <label class="custom-control-label" for="radio2">Cadastrado</label>
-                    </div>
-                </div>
                 <div class="form-group md-form">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Procurar cliente" id="buscaCliente">
+                        <input type="text" class="form-control" placeholder="Procurar cliente por CPF" id="clientCPF">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="clienteAdicionar">Adicionar</button>
+                            <button class="btn btn-primary" type="button" id="findClient">Adicionar</button>
                         </div>
                     </div>
+                </div>
+                <div id="showClient" class="container">
+
                 </div>
                 <div class="form-group text-right">
                     <button class="btn btn-success btn-lg" type="submit">Finalizar Venda</button>

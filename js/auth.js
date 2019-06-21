@@ -1,9 +1,6 @@
 var banco = getBanco();
 
 $(document).ready(function() {
-    // Erro vem por default escondido
-    $('#error-div').hide();
-
     // Se houver parâmetro de erro
     if(location.search.substring(1)) {
         alert("Você precisa estar logado para acessar esta página!");
@@ -34,8 +31,12 @@ $(document).ready(function() {
             }
         });
 
-        //  Se chegar até aqui, é porque não conseguiu se logar, apresenta um erro
-        $('#error-div').slideToggle().delay(5000).slideToggle();
+        if(!sessionStorage.getItem('auth')) {
+            //  Se chegar até aqui, é porque não conseguiu se logar, apresenta um erro
+            $('#error-div').removeClass('d-none');
+            $('#error-div').hide();
+            $('#error-div').slideToggle().delay(5000).slideToggle();
+        }
     });
 });
 

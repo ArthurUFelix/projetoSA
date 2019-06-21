@@ -134,3 +134,27 @@ footer.content-footer a {
 #divCard {
     margin: auto;
 }
+
+#showProducts {
+    margin-bottom: 30px;
+    max-height: 200px;
+}
+
+#showProducts .card {
+    width: 15rem;
+    margin: 0 10px 10px 0;
+    display: inline-block;
+}
+
+#showProducts .card-body {
+    padding: 10px;
+}
+
+#showProducts .card-body p {
+    float: left;
+}
+
+#showProducts .card-body a {
+    float: right;
+    padding: 5px 5px 0 5px
+}
