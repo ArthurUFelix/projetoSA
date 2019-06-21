@@ -25,7 +25,14 @@ $(document).ready(function() {
             let produtos = banco[0].produtos;
             produtos.forEach(function(item, index) {
                 // Mostra apenas os itens ainda não selecionados
-                if(!produtosVenda.includes(item)) {
+                var exists = false;
+                produtosVenda.forEach(function(itemVenda, indexVenda) {
+                    if(itemVenda.cod == item.cod) {
+                        exists = true;
+                    }
+                });
+                // Se não existir, mostre
+                if(exists == false) {
                     if(item.desc.toUpperCase().match(new RegExp(product.toUpperCase()))) {
                         hasProducts = true;
                         // Se a busca do campo der match com algum produto adicione ele aos cards
@@ -50,17 +57,18 @@ $(document).ready(function() {
 
             let clientes = banco[0].clientes;
             clientes.forEach(function(item, index) {
-                if(item.cpf.match(new RegExp(client))) {
+                if(item.cpf == client) {
                     hasClient = true;
-                    clienteVenda = item;
-
+                    clienteVenda = Object.assign({}, item);
+                    
                     // Se a busca do campo der match com algum cliente adicione ele aos cards
                     $('#showClient').append('<div class="card col-3"><div class="card-body"><h5 class="card-title">'+item.name+'</h5><p class="card-text">CPF: '+item.cpf+'</p><p>'+item.bairro+'. '+ item.cidade+', '+item.estado+'.</p></div></div>');
                 }
             });
         }
-
+        
         if(hasClient == false) {
+            clienteVenda = null;
             $('#showClient').text('Nenhum cliente encontrado');
         }
     });
@@ -72,7 +80,8 @@ function addProduct(productIndex) {
 
     products.forEach(function(item, index) {
         if(index == productIndex) {
-            produtosVenda.push(item);
+            novoProduto = Object.assign({}, item);
+            produtosVenda.push(novoProduto);
         }
     });
 
@@ -98,7 +107,7 @@ function updateProductsTable() {
     tabela.text('');
 
     produtosVenda.forEach(function(item, index) {
-        tabela.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.desc+"</td><td class='estoqueQnt'>"+item.qnt+"</td><td><input type='number' placeholder='Digite a quantidade' class='form-control productQnt' value='"+(item.qntVenda?item.qntVenda:'')+"' data-index='"+index+"'><div class='invalid-tooltip'>Não disponível em estoque.</div></td><td class='item-price' data-price='"+item.val+"'>R$ "+item.val+"</td><td><i onclick='deleteProduct("+index+")' class='material-icons color-red'>delete</i></td></tr>");
+        tabela.append("<tr><th scope='row'>"+item.cod+"</th><td>"+item.desc+"</td><td class='estoqueQnt'>"+item.qnt+"</td><td><input type='number' placeholder='Digite a quantidade' class='form-control productQnt' value='"+(item.qntVenda?item.qntVenda:'')+"' data-index='"+index+"'></td><td class='item-price' data-price='"+item.val+"'>R$ "+item.val+"</td><td><i onclick='deleteProduct("+index+")' class='material-icons color-red'>delete</i></td></tr>");
     });
 
     $('.productQnt').keyup(function() {
@@ -122,7 +131,8 @@ function calculateTotalPrice() {
         // Valida a quantidade em relação ao estoque
         let estoqueQnt = $(this).find('td.estoqueQnt').text();
 
-        if(itemQnt > estoqueQnt) {
+        // console.log(itemQnt, estoqueQnt);
+        if(Number(itemQnt) > Number(estoqueQnt) || itemQnt == "") {
             $(this).find('input').addClass('is-invalid');
         } else {
             $(this).find('input').removeClass('is-invalid');
@@ -136,3 +146,68 @@ function calculateTotalPrice() {
 
     $('#showTotalPrice').text(totalPrice);
 }
+
+$(document).ready(function() {
+    // Função para concluir venda
+    $('#add-vendas-form').submit(function(e) {
+        e.preventDefault();
+
+        // Se nenhum campo tive erro
+        if(formIsValid()) {
+            let loja = banco[0].loja[0];
+            let funcionario = JSON.parse(sessionStorage.auth).userData;
+
+            // formata os dados e insere no banco
+            let dados = {
+                loja: loja.nome,
+                data: new Date().toLocaleDateString(),
+                horario: new Date().toLocaleTimeString(),
+                cliente: clienteVenda,
+                produtos: produtosVenda,
+                funcionario: {nome: funcionario.name, id: funcionario.cod}
+            };
+
+            // Nesse ponto os dados ja foram montados corretamente e passou em todas validações, agora subtrai do estoque
+            let produtos = banco[0].produtos;
+            produtos.forEach(function(itemMain, indexMain) {
+                dados.produtos.forEach(function(item, index) {
+                    if(itemMain.cod == item.cod) {
+                        let novaQnt = itemMain.qnt - item.qntVenda;
+                        itemMain.qnt = novaQnt;
+                        bancoUpdate('produtos', indexMain, itemMain);
+                    }
+                });
+            });
+
+            // Após atualizar o estoque, salva a venda
+            bancoInsert('vendas', dados);
+
+            // Redireciona o usuário para os relatórios
+            var rootPath = location.href.split("pages");
+            var newPath = rootPath[0] + "pages/relatorios/index.html";
+            window.open(newPath, "_self");
+        } else {
+            swal("Falha ao finalizar venda!", "Alguns dados informados estão incorretos, verifique-os e tente novamente", "error");
+        }
+    });
+
+    function formIsValid() {
+        let hasError = false;
+
+        if(produtosVenda.length == 0)
+            hasError = true;
+        else if(clienteVenda == null)
+            hasError = true;
+        else if($('#add-vendas-form').find('input').hasClass('is-invalid'))
+            hasError = true;
+
+        calculateTotalPrice();
+        if($('#showTotalPrice').text() == "")
+            hasError = true;
+
+        if(hasError)
+            return false;
+        else
+            return true;
+    }
+});
