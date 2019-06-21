@@ -61,9 +61,24 @@
                 <h1 class="display-4">Relatórios</h1>
             </header>
 
-            <!-- <hr> -->
-
-            <!-- <table id="tabelaFuncionarios" class="table table-hover table-bordered">
+            <div class="text-center col-md-6" id="divCard">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Total de Vendas</h4>
+                        <h6 class="card-subtitle mb-2 text-muted" id="totalVendasCard">R$ 99999999</h6></br>
+                        <h6 class="" id="logcomp">Melhor vendedor:</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" id="bestVendedor">[COD] Carlos</h6></br>
+                        <h6 class="" id="cidade">Produto mais vendido:</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" id="bestProd">Playstation 4 Pro - R$ 3000</h6></br>
+                        <h6 class="" id="cep"></h6>Período de mais vendas:</br>
+                        <h6 class="card-subtitle mb-2 text-muted" id="bestPeriod">Março</h6></br>
+                        <h6 id="telefone">Cliente que mais comprou:</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" id="bestClient">Pedro Moratelli - 000.000.000-00</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <table id="tabelaVendas" class="table table-hover table-bordered">
                 <thead class="grey lighten-3">
                     <tr>
                     <th scope="col">Data</th>
@@ -77,12 +92,15 @@
                 </thead>
                 <tbody>
                 </tbody>
-            </table> -->
-            <div>
-                <canvas id="chartVendas" class="chartjs-render-monitor" width="1000" height="200"></canvas>
-            </div>
-            <div>
-                <canvas id="chartVendas2" class="chartjs-render-monitor" width="2000" height="1000"></canvas>
+            </table>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="chartVendas" class="chartjs-render-monitor" width="2000" height="1000"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="chartVendas2" class="chartjs-render-monitor" width="2000" height="1000"></canvas>
+                </div>
             </div>
         </div>
     </div> 
