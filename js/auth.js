@@ -2,7 +2,7 @@ var banco = getBanco();
 
 $(document).ready(function() {
     // Se houver parâmetro de erro
-    if(location.search.substring(1)) {
+    if(location.search.substring(1) == 'authError') {
         alert("Você precisa estar logado para acessar esta página!");
         location = location.href.split('?')[0];
     }
