@@ -33,6 +33,14 @@ var bestProductName, products = [], productsQnt = [];
 // Vendedor
 var bestFunc, funcionarios = [], funcionariosQnt = [];
 
+// Top funcionarios
+var topFuncs = [];
+var topFuncsVendas = [];
+
+// Top produtos
+var topProducts = [];
+var topProductsVendas = [];
+
 function dadosMainCard() {
     let vendas = banco[0].vendas;
     vendas.forEach(function(item, index) {
@@ -59,8 +67,7 @@ function dadosMainCard() {
         }
 
         // Calcula o melhor período
-        periodosQnt[new Date(item.data).getMonth()]++
-        console.log(periodosQnt);
+        periodosQnt[new Date(item.data).getMonth()]++;
 
         // Calcula o melhor cliente
         let queryCliente = clientes.filter(function(f) { return f.id === item.cliente.cpf; });
@@ -85,6 +92,55 @@ function dadosMainCard() {
     $('#bestPeriod').text(bestPeriodo);
     $('#bestClient').text(bestCliente.name + " - " + bestCliente.cpf);
 }
+
+function topFuncionarios() {
+    let funcNomes = [], funcVendas = [];
+    let vendas = banco[0].vendas;
+    vendas.forEach(function(item, index) {
+        if(funcNomes.includes(item.funcionario.nome)) {
+            let index = funcNomes.indexOf(item.funcionario.nome);
+            funcVendas[index]++
+        } else {
+            funcNomes.push(item.funcionario.nome);
+            funcVendas.push(1);
+        }
+    });
+    
+    var limite = funcNomes.length <= 3 ? funcNomes.length : 3;
+    for(let i = 0;i < limite;i++) {
+        let funcIndex = funcVendas.indexOf(Math.max(...funcVendas));
+        topFuncs[i] = funcNomes[funcIndex];
+        topFuncsVendas[i] = funcVendas[funcIndex];
+        funcVendas.splice(funcIndex, 1);
+        funcNomes.splice(funcIndex, 1);
+    }
+}
+
+function topProdutos() {
+    let productNomes = [], productVendas = [];
+    let vendas = banco[0].vendas;
+    vendas.forEach(function(item, index) {
+        item.produtos.forEach(function(itemPro, indexPro) {
+            if(productNomes.includes(itemPro.desc)) {
+                let productIndex = productNomes.indexOf(itemPro.desc);
+                productVendas[productIndex] += Number(itemPro.qntVenda);
+            } else {
+                productNomes.push(itemPro.desc);
+                productVendas.push(Number(itemPro.qntVenda));
+            }
+        });
+    });
+    
+    var limite = productNomes.length <= 3 ? productNomes.length : 3;
+    for(let i = 0;i < limite;i++) {
+        let funcIndex = productVendas.indexOf(Math.max(...productVendas));
+        topProducts[i] = productNomes[funcIndex];
+        topProductsVendas[i] = productVendas[funcIndex];
+        productVendas.splice(funcIndex, 1);
+        productNomes.splice(funcIndex, 1);
+    }
+}
+
 $(document).ready(function() {
     //Chart.js -- TOTAL DE VENDAS
     var ctx = $("#chartVendas");
@@ -137,16 +193,17 @@ $(document).ready(function() {
         }
     });
     
-    
+    topFuncionarios();
+
     //Chart.js -- MELHORES VENDEDORES
     var ctx = $("#chartVendedores");
     var chartVendedores = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["vermelho", "azul", "amarelo"],
+            labels: topFuncs.reverse(),
             datasets: [{
                 label: "Vendas, em R$",
-                data: [5, 10, 15],
+                data: topFuncsVendas.reverse(),
                 backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -182,15 +239,17 @@ $(document).ready(function() {
         }
     });
     
+    topProdutos();
+
     //Chart.js -- MELHORES PRODUTOS
     var ctx = $("#chartProdutos");
     var chartProdutos = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["PlayStation 4 Pro", "Xbox One X", "Nintendo Switch"],
+            labels: topProducts.reverse(),
             datasets: [{
                 label: "Número de vendas",
-                data: [50, 70, 26],
+                data: topProductsVendas.reverse(),
                 backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
