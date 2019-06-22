@@ -155,16 +155,18 @@ $(document).ready(function() {
         // Se nenhum campo tive erro
         if(formIsValid()) {
             let loja = banco[0].loja[0];
-            let funcionario = JSON.parse(sessionStorage.auth).userData;
+            let authUser = JSON.parse(sessionStorage.auth);
 
             // formata os dados e insere no banco
             let dados = {
-                loja: loja.nome,
-                data: new Date().toLocaleDateString(),
-                horario: new Date().toLocaleTimeString(),
-                cliente: clienteVenda,
-                produtos: produtosVenda,
-                funcionario: {nome: funcionario.name, id: funcionario.cod}
+                loja                 : loja.nome,
+                dataFormatada        : new Date().toLocaleDateString(),
+                data                 : new Date().getTime(),
+                horario              : new Date().toLocaleTimeString(),
+                cliente              : clienteVenda,
+                produtos             : produtosVenda,
+                funcionario          : {nome: authUser.userData.name, id: authUser.userData.cod},
+                total               : $('#showTotalPrice').text()
             };
 
             // Nesse ponto os dados ja foram montados corretamente e passou em todas validações, agora subtrai do estoque
@@ -184,7 +186,10 @@ $(document).ready(function() {
 
             // Redireciona o usuário para os relatórios
             var rootPath = location.href.split("pages");
-            var newPath = rootPath[0] + "pages/relatorios/index.html";
+            if(authUser.admin)
+                var newPath = rootPath[0] + "pages/relatorios/index.html";
+            else
+                var newPath = rootPath[0] + "pages/loja/index.html";
             window.open(newPath, "_self");
         } else {
             swal("Falha ao finalizar venda!", "Alguns dados informados estão incorretos, verifique-os e tente novamente", "error");
