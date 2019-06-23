@@ -86,7 +86,9 @@
     <script type="text/javascript" src="../../js/libs/popper.min.js"></script>
     <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/libs/mdbootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/libs/masker.min.js"></script>
+    <script type="text/javascript" src="../../js/libs/jquery.mask.js"></script>
+    <script type="text/javascript" src="../../js/libs/validateCpfCnpj.js"></script>
+
 
 
     <script type="text/javascript" src="../../js/db.js"></script>
@@ -97,7 +99,10 @@
     <script>
     $(document).ready(function() {
         var dados = banco[0].loja[0];
-        console.log(dados);
+        
+        if(dados.nome == undefined) {
+            window.open(location.href.replace("index", "edit"));
+        }
 
         $("#nome").text(dados.nome);
         $("#cnpj").text("CNPJ: " + dados.cnpj);

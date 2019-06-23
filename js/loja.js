@@ -24,6 +24,27 @@ $(document).ready(function() {
     edit.html
 ***************/
 $(document).ready(function() {
+    $('#lojaCnpj').cpfcnpj({
+        mask: true,
+        validate: 'cnpj',
+        event: 'keyup',
+        ifValid: function (input) { input.removeClass("is-invalid"); input.addClass("is-valid"); input.removeAttr('pattern'); },
+        ifInvalid: function (input) { input.addClass("is-invalid"); input.removeClass("is-valid"); input.attr('pattern', 'blocked'); }
+    });
+
+    var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+    
+    $('#lojaPhone').mask(SPMaskBehavior, spOptions);
+
+    $('#lojaCEP').mask('00000-000');
+
     $('#edit-loja-form').submit(function(event){
         event.preventDefault();
 
@@ -58,7 +79,7 @@ $(document).ready(function() {
         $(this).removeClass('is-invalid is-valid');
         $(this).removeAttr('pattern');
 
-        let cep = $(this).val();
+        let cep = $(this).cleanVal();
 
         if(cep.length == 8) {
             $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {

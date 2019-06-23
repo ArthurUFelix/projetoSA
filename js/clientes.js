@@ -4,6 +4,27 @@ var banco = getBanco();
     create.html
 ***************/
 $(document).ready(function() {
+    $('#clientCPF').cpfcnpj({
+        mask: true,
+        validate: 'cpf',
+        event: 'keyup',
+        ifValid: function (input) { input.removeClass("is-invalid"); input.addClass("is-valid"); input.removeAttr('pattern'); },
+        ifInvalid: function (input) { input.addClass("is-invalid"); input.removeClass("is-valid"); input.attr('pattern', 'blocked'); }
+    });
+
+    var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+    },
+    spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+        }
+    };
+    
+    $('#clientPhone').mask(SPMaskBehavior, spOptions);
+
+    $('#clientCEP').mask('00000-000');
+
     $('#add-client-form').submit(function(event){
         if($('#add-client-form').is(':valid')) {
             event.preventDefault();
@@ -35,7 +56,7 @@ $(document).ready(function() {
         $(this).removeClass('is-invalid is-valid');
         $(this).removeAttr('pattern');
 
-        let cep = $(this).val();
+        let cep = $(this).cleanVal();
 
         if(cep.length == 8) {
             $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {
@@ -74,7 +95,7 @@ $(document).ready(function(){
 
         tabelaClientes.text('');
         clientes.forEach(function(item, index){
-            tabelaClientes.append("<tr><th scope='row'>"+item.name+"</th><td>"+item.address+"</td><td>"+item.phone+"</td><td>"+item.email+"</td><td><i onclick='deletarCliente("+index+")' class='material-icons color-red'>delete</i><i onclick='editarCliente("+index+")' class='material-icons color-blue'>border_color</i></td></tr>");
+            tabelaClientes.append("<tr><th scope='row'>"+item.name+"</th><td>"+item.bairro+". "+item.cidade+", "+item.estado+".</td><td>"+item.phone+"</td><td>"+item.email+"</td><td><i onclick='deletarCliente("+index+")' class='material-icons color-red'>delete</i><i onclick='editarCliente("+index+")' class='material-icons color-blue'>border_color</i></td></tr>");
         });
     }
 });
