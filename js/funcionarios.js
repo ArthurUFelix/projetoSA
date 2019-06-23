@@ -8,10 +8,26 @@ $(document).ready(function() {
         if($('#add-func-form').is(':valid')) {
             event.preventDefault();
 
+            let codigo;
+            let funcionarios = banco[0].funcionarios;
+            let unique = false;
+            while(!unique) {
+                codigo = gerarCodigo();
+                let hasEqual = false;
+
+                funcionarios.forEach(function(item) {
+                    if(item.cod == codigo)
+                        hasEqual = true;
+                });
+
+                if(!hasEqual)
+                    unique = true;
+            }
+
             // formata os dados e insere no banco
             let dados = {
                 name: $('#funcName').val(),
-                cod: $('#funcCod').val(),
+                cod: codigo,
                 adDate: $('#funcAdDate').val(),
                 cargo: $('#funcCargo option:selected').text(),
                 admin: false
@@ -74,7 +90,7 @@ $(document).ready(function(){
 
         // Preenche os campos com os dados do funcionario
         $('#funcId').val(id);
-        $('#funcCod').val(funcionario.cod).trigger('focus');
+        $('#funcCod').val(funcionario.cod);
         $('#funcAdDate').val(funcionario.adDate).trigger('focus');
         $('#funcCargo').val(funcionario.cargo).trigger('focus');
         $('#funcName').val(funcionario.name).trigger('focus');

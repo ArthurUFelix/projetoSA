@@ -8,6 +8,9 @@ var produtosVenda = [];
 var clienteVenda;
 
 $(document).ready(function() {
+    // Adicona mascara ao input de cpf
+    $('#clientCPF').mask('000.000.000-00');
+
     // Carrega informação da loja e do vendedor
     var vendedor = JSON.parse(sessionStorage.auth);
     var loja = banco[0].loja[0];

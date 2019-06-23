@@ -16,3 +16,16 @@ $(document).ready(function() {
 	    }, false);
 	});
 });
+
+function gerarCodigo() {
+	var r1, r2, r3, rNumber;
+	var min = 10;
+	var max = 99;  
+
+	r1 = (Math.random() * (+max - +min) + +min).toFixed(0);
+	r2 = (Math.random() * (+max - +min) + +min).toFixed(0);
+	r3 = (Math.random() * (+max - +min) + +min).toFixed(0);
+	rNumber = Number(String(r1) + String(r2) + String(r3));
+
+	return rNumber;
+}

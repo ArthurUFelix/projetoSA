@@ -25,9 +25,25 @@ $(document).ready(function() {
         if($('#add-product-form').is(':valid')) {
             event.preventDefault();
 
+            let codigo;
+            let estoque = banco[0].produtos;
+            let unique = false;
+            while(!unique) {
+                codigo = gerarCodigo();
+                let hasEqual = false;
+
+                estoque.forEach(function(item) {
+                    if(item.cod == codigo)
+                        hasEqual = true;
+                });
+
+                if(!hasEqual)
+                    unique = true;
+            }
+
             // formata os dados e insere no banco
             let dados = {
-                cod: $('#productCod').val(),
+                cod: codigo,
                 desc: $('#productDesc').val(),
                 qnt: $('#productQnt').val(),
                 val: parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
@@ -87,7 +103,7 @@ $(document).ready(function(){
 
         // Preenche os campos com os dados do produto
         $('#productId').val(id);
-        $('#productCod').trigger('focus').val(produto.cod);
+        $('#productCod').val(produto.cod);
         $('#productDesc').trigger('focus').val(produto.desc);
         $('#productQnt').trigger('focus').val(produto.qnt);
         $('#productVal').trigger('focus').val(produto.val * 100).trigger('keyup');

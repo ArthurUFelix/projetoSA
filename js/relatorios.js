@@ -35,7 +35,7 @@ var bestFunc, funcionarios = [], funcionariosQnt = [];
 
 // Top funcionarios
 var topFuncs = [];
-var topFuncsVendas = [];
+var topFuncsMoney = [];
 
 // Top produtos
 var topProducts = [];
@@ -94,25 +94,25 @@ function dadosMainCard() {
 }
 
 function topFuncionarios() {
-    let funcNomes = [], funcVendas = [];
+    let funcNomes = [], funcTotalMoney = [];
     let vendas = banco[0].vendas;
     vendas.forEach(function(item, index) {
         if(funcNomes.includes(item.funcionario.nome)) {
             let index = funcNomes.indexOf(item.funcionario.nome);
-            funcVendas[index]++
+            funcTotalMoney[index] += Number(item.total);
         } else {
             funcNomes.push(item.funcionario.nome);
-            funcVendas.push(1);
+            funcTotalMoney.push(Number(item.total));
         }
     });
     
     var limite = funcNomes.length <= 3 ? funcNomes.length : 3;
     for(let i = 0;i < limite;i++) {
-        let funcIndex = funcVendas.indexOf(Math.max(...funcVendas));
+        let funcIndex = funcTotalMoney.indexOf(Math.max(...funcTotalMoney));
         topFuncs[i] = funcNomes[funcIndex];
-        topFuncsVendas[i] = funcVendas[funcIndex];
-        funcVendas.splice(funcIndex, 1);
+        topFuncsMoney[i] = funcTotalMoney[funcIndex];
         funcNomes.splice(funcIndex, 1);
+        funcTotalMoney.splice(funcIndex, 1);
     }
 }
 
@@ -203,7 +203,7 @@ $(document).ready(function() {
             labels: topFuncs.reverse(),
             datasets: [{
                 label: "Vendas, em R$",
-                data: topFuncsVendas.reverse(),
+                data: topFuncsMoney.reverse(),
                 backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
