@@ -4,6 +4,7 @@ var banco = getBanco();
     create.html
 ***************/
 $(document).ready(function() {
+    // Máscara
     VMasker($(".maskMoney")).maskMoney({
         // Decimal precision -> "90"
         precision: 2,
@@ -19,7 +20,8 @@ $(document).ready(function() {
         // masking decimals with ",00"
         // Zero cents -> "R$ 1.234.567.890,00"
         // zeroCents: true
-      });
+    });
+    // Fim máscara
 
     $('#add-product-form').submit(function(event){
         if($('#add-product-form').is(':valid')) {
@@ -41,16 +43,14 @@ $(document).ready(function() {
                     unique = true;
             }
 
-            // formata os dados e insere no banco
             let dados = {
-                cod: codigo,
-                desc: $('#productDesc').val(),
-                qnt: $('#productQnt').val(),
-                val: parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
+                cod  : codigo,
+                desc : $('#productDesc').val(),
+                qnt  : $('#productQnt').val(),
+                val  : parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
             };
             bancoInsert("produtos", dados);
     
-            // redireciona o usuário para a tela de estoque
             location = location.href.replace("create", "index");
         }
     });
@@ -104,8 +104,8 @@ $(document).ready(function(){
         // Preenche os campos com os dados do produto
         $('#productId').val(id);
         $('#productCod').val(produto.cod);
-        $('#productDesc').trigger('focus').val(produto.desc);
-        $('#productQnt').trigger('focus').val(produto.qnt);
+        $('#productDesc').val(produto.desc).trigger('focus');
+        $('#productQnt').val(produto.qnt).trigger('focus');
         $('#productVal').trigger('focus').val(produto.val * 100).trigger('keyup');
     }
 
@@ -113,17 +113,16 @@ $(document).ready(function(){
         if($('#edit-product-form').is(':valid')) {
             event.preventDefault();
 
-            // formata os dados e insere no banco
             let dados = {
-                cod: $('#productCod').val(),
-                desc: $('#productDesc').val(),
-                qnt: $('#productQnt').val(),
-                val: parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
+                cod  : $('#productCod').val(),
+                desc : $('#productDesc').val(),
+                qnt  : $('#productQnt').val(),
+                val  : parseFloat($('#productVal').val().slice(3).replace('.','').replace(',','.'))
             };
-            let id = $('#productId').val()
+            let id = $('#productId').val();
+
             bancoUpdate("produtos", id, dados);
     
-            // redireciona o usuário para a tela de estoque
             location = location.href.replace("edit", "index").replace(location.search, '');
         }
     });

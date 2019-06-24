@@ -169,7 +169,7 @@ $(document).ready(function() {
                 cliente              : clienteVenda,
                 produtos             : produtosVenda,
                 funcionario          : {nome: authUser.userData.name, id: authUser.userData.cod},
-                total               : $('#showTotalPrice').text()
+                total                : $('#showTotalPrice').text()
             };
 
             // Nesse ponto os dados ja foram montados corretamente e passou em todas validações, agora subtrai do estoque

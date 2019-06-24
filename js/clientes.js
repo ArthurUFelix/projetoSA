@@ -4,6 +4,7 @@ var banco = getBanco();
     create.html
 ***************/
 $(document).ready(function() {
+    // Validações e máscara
     $('#clientCPF').cpfcnpj({
         mask: true,
         validate: 'cpf',
@@ -24,28 +25,27 @@ $(document).ready(function() {
     $('#clientPhone').mask(SPMaskBehavior, spOptions);
 
     $('#clientCEP').mask('00000-000');
+    // Fim máscaras
 
     $('#add-client-form').submit(function(event){
         if($('#add-client-form').is(':valid')) {
             event.preventDefault();
 
-            // formata os dados e insere no banco
             let dados = {
-                name: $('#clientName').val(),
-                cpf: $('#clientCPF').val(),
-                cep: $('#clientCEP').val(),
-                logradouro: $('#clientLog').val(),
-                numero: $('#clientNumero').val(),
-                complemento: $('#clientComp').val(),
-                bairro: $('#clientBairro').val(),
-                cidade: $('#clientCidade').val(),
-                estado: $('#clientEstado').val(),
-                phone: $('#clientPhone').val(),
-                email: $('#clientEmail').val()
+                name        : $('#clientName').val(),
+                cpf         : $('#clientCPF').val(),
+                cep         : $('#clientCEP').val(),
+                logradouro  : $('#clientLog').val(),
+                numero      : $('#clientNumero').val(),
+                complemento : $('#clientComp').val(),
+                bairro      : $('#clientBairro').val(),
+                cidade      : $('#clientCidade').val(),
+                estado      : $('#clientEstado').val(),
+                phone       : $('#clientPhone').val(),
+                email       : $('#clientEmail').val()
             };
             bancoInsert("clientes", dados);
     
-            // redireciona o usuário para a tela de estoque
             location = location.href.replace("create", "index");
         }
     });
@@ -149,24 +149,22 @@ $(document).ready(function(){
         if($('#edit-client-form').is(':valid')) {
             event.preventDefault();
 
-            // formata os dados e insere no banco
             let dados = {
-                name: $('#clientName').val(),
-                cpf: $('#clientCPF').val(),
-                cep: $('#clientCEP').val(),
-                logradouro: $('#clientLog').val(),
-                numero: $('#clientNumero').val(),
-                complemento: $('#clientComp').val(),
-                bairro: $('#clientBairro').val(),
-                cidade: $('#clientCidade').val(),
-                estado: $('#clientEstado').val(),
-                phone: $('#clientPhone').val(),
-                email: $('#clientEmail').val()
+                name        : $('#clientName').val(),
+                cpf         : $('#clientCPF').val(),
+                cep         : $('#clientCEP').val(),
+                logradouro  : $('#clientLog').val(),
+                numero      : $('#clientNumero').val(),
+                complemento : $('#clientComp').val(),
+                bairro      : $('#clientBairro').val(),
+                cidade      : $('#clientCidade').val(),
+                estado      : $('#clientEstado').val(),
+                phone       : $('#clientPhone').val(),
+                email       : $('#clientEmail').val()
             };
             let id = $('#clientId').val()
             bancoUpdate("clientes", id, dados);
     
-            // redireciona o usuário para a tela de estoque
             location = location.href.replace("edit", "index").replace(location.search, '');
         }
     });

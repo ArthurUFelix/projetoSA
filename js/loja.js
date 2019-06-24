@@ -24,6 +24,7 @@ $(document).ready(function() {
     edit.html
 ***************/
 $(document).ready(function() {
+    // Validações e máscaras
     $('#lojaCnpj').cpfcnpj({
         mask: true,
         validate: 'cnpj',
@@ -44,31 +45,30 @@ $(document).ready(function() {
     $('#lojaPhone').mask(SPMaskBehavior, spOptions);
 
     $('#lojaCEP').mask('00000-000');
+    // Fim máscaras
 
     $('#edit-loja-form').submit(function(event){
         event.preventDefault();
 
         if($('#edit-loja-form').is(':valid')) {
-            // formata os dados e insere no banco
+            
             let dados = {
-                nome: $('#lojaName').val(),
-                cnpj: $('#lojaCnpj').val(),
-                cep: $('#lojaCEP').val(),
-                logradouro: $('#lojaLog').val(),
-                numero: $('#lojaNumero').val(),
-                complement: $('#lojaComp').val(),
-                bairro: $('#lojaBairro').val(),
-                cidade: $('#lojaCidade').val(),
-                estado: $('#lojaEstado').val(),
-                telefone: $('#lojaPhone').val(),
-                email: $('#lojaEmail').val(),
-                url: $('#lojaUrl').val()
+                nome       : $('#lojaName').val(),
+                cnpj       : $('#lojaCnpj').val(),
+                cep        : $('#lojaCEP').val(),
+                logradouro : $('#lojaLog').val(),
+                numero     : $('#lojaNumero').val(),
+                complement : $('#lojaComp').val(),
+                bairro     : $('#lojaBairro').val(),
+                cidade     : $('#lojaCidade').val(),
+                estado     : $('#lojaEstado').val(),
+                telefone   : $('#lojaPhone').val(),
+                email      : $('#lojaEmail').val(),
+                url        : $('#lojaUrl').val()
             };
     
-            // Atualiza os dados da loja, estando eles vazios ou n
             bancoUpdate("loja", 0, dados);
     
-            // redireciona o usuário para a tela de estoque
             location = location.href.replace("edit", "index");
         }
     });

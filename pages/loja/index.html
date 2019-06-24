@@ -107,7 +107,7 @@
         var dados = banco[0].loja[0];
         
         if(dados.nome == undefined) {
-            window.open(location.href.replace("index", "edit"));
+            window.open(location.href.replace("index", "edit"), '_self');
         }
 
         $("#nome").text(dados.nome);
