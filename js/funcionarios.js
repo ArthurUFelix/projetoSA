@@ -26,11 +26,11 @@ $(document).ready(function() {
 
             // formata os dados e insere no banco
             let dados = {
-                name: $('#funcName').val(),
-                cod: codigo,
-                adDate: $('#funcAdDate').val(),
-                cargo: $('#funcCargo option:selected').text(),
-                admin: false
+                name   : $('#funcName').val(),
+                cod    : codigo,
+                adDate : $('#funcAdDate').val(),
+                cargo  : $('#funcCargo option:selected').text(),
+                admin  : false
             };
 
             if(dados.cargo == "Gerente") dados.admin = true;
@@ -102,10 +102,10 @@ $(document).ready(function(){
 
             // formata os dados e insere no banco
             let dados = {
-                name: $('#funcName').val(),
-                cod: $('#funcCod').val(),
-                adDate: $('#funcAdDate').val(),
-                cargo: $('#funcCargo').val()
+                name   : $('#funcName').val(),
+                cod    : $('#funcCod').val(),
+                adDate : $('#funcAdDate').val(),
+                cargo  : $('#funcCargo').val()
             };
             let id = $('#funcId').val()
             bancoUpdate("funcionarios", id, dados);
