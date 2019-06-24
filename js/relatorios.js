@@ -28,6 +28,7 @@ var bestCliente, clientes = [], clientesQnt = [];;
 var bestPeriodo;
 var periodos = ["Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 var periodosQnt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var periodosMoney = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 // Produto
 var bestProductName, products = [], productsQnt = [];
 // Vendedor
@@ -67,7 +68,9 @@ function dadosMainCard() {
         }
 
         // Calcula o melhor período
-        periodosQnt[new Date(item.data).getMonth()]++;
+        let month = new Date(item.data).getMonth();
+        periodosQnt[month]++;
+        periodosMoney[month] += Number(item.total);
 
         // Calcula o melhor cliente
         let queryCliente = clientes.filter(function(f) { return f.id === item.cliente.cpf; });
@@ -149,14 +152,14 @@ $(document).ready(function() {
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
             datasets: [{
-                label: 'Vendas',
+                label: 'Vendas, em R$',
                 backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 ],
                 borderColor: [
                     'rgba(54, 162, 235, 1)',
                 ],
-                data: periodosQnt.slice(0,6),
+                data: periodosMoney.slice(0,6),
                 fill: true,
             }],
         },
