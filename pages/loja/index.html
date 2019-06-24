@@ -98,6 +98,12 @@
 
     <script>
     $(document).ready(function() {
+        var user = JSON.parse(sessionStorage.getItem('auth'));
+        var isAdmin = user.admin;
+        if(user.admin == false) {
+            $('#lojaIndexBtn').hide();
+        }
+
         var dados = banco[0].loja[0];
         
         if(dados.nome == undefined) {
