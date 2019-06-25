@@ -28,27 +28,54 @@ $(document).ready(function() {
     // Fim máscaras
 
     $('#add-client-form').submit(function(event){
-        if($('#add-client-form').is(':valid')) {
-            event.preventDefault();
+        event.preventDefault();
 
-            let dados = {
-                name        : $('#clientName').val(),
-                cpf         : $('#clientCPF').val(),
-                cep         : $('#clientCEP').val(),
-                logradouro  : $('#clientLog').val(),
-                numero      : $('#clientNumero').val(),
-                complemento : $('#clientComp').val(),
-                bairro      : $('#clientBairro').val(),
-                cidade      : $('#clientCidade').val(),
-                estado      : $('#clientEstado').val(),
-                phone       : $('#clientPhone').val(),
-                email       : $('#clientEmail').val()
-            };
-            bancoInsert("clientes", dados);
-    
-            location = location.href.replace("create", "index");
+        let cpfIsValid = verifyCPF();
+
+        if(cpfIsValid) {
+            if($('#add-client-form').is(':valid')) {
+                let dados = {
+                    name        : $('#clientName').val(),
+                    cpf         : $('#clientCPF').val(),
+                    cep         : $('#clientCEP').val(),
+                    logradouro  : $('#clientLog').val(),
+                    numero      : $('#clientNumero').val(),
+                    complemento : $('#clientComp').val(),
+                    bairro      : $('#clientBairro').val(),
+                    cidade      : $('#clientCidade').val(),
+                    estado      : $('#clientEstado').val(),
+                    phone       : $('#clientPhone').val(),
+                    email       : $('#clientEmail').val()
+                };
+                bancoInsert("clientes", dados);
+        
+                location = location.href.replace("create", "index");
+            }
         }
     });
+
+    function verifyCPF() {
+        let clientes = banco[0].clientes;
+        let cpfField = $('#clientCPF');
+        let hasEquals = false;
+
+        clientes.forEach(function(item, index) {
+            if(cpfField.val() == item.cpf)
+                hasEquals = true;
+        });
+
+        if(hasEquals) {
+            cpfField.val('');
+            cpfField.removeClass('is-valid');
+            cpfField.addClass('is-invalid');
+            swal("Erro ao adicionar cliente!", "Já existe um cliente com o CPF informado, digite um CPF único", "error");
+
+            return false;
+        } else {
+            return true
+        }
+
+    }
 
     // Monitora o input de CEP para buscar o endereço
     $('#clientCEP').keyup(function() {
@@ -61,7 +88,7 @@ $(document).ready(function() {
         if(cep.length == 8) {
             $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {
                 if(data.erro == true) {
-                    $('#client').addClass('is-invalid');
+                    $('#clientCEP').addClass('is-invalid');
                     $(this).attr('pattern', 'blocked');
 
                     return false

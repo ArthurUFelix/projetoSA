@@ -14,7 +14,7 @@ $(document).ready(function() {
             else
                 produtosString += itemPro.desc;
         });
-        tabela.append("<tr><td class='text-center font-weight-bold'>"+ index +"</td><td class='vendaData'>" + item.dataFormatada + "</td><td class='vendaLoja'>" + item.loja + "</td><td class='vendaVendedor'>" + item.funcionario.nome + "</td><td class='vendaProd'>" + produtosString + "</td><td class='vendaClient'>" + item.cliente.name + "</td><td class='vendaTotal'>R$ " + item.total + "</td></tr>");
+        tabela.append("<tr><td class='text-center font-weight-bold'>"+ (index+1) +"</td><td class='vendaData'>" + item.dataFormatada + "</td><td class='vendaLoja'>" + item.loja + "</td><td class='vendaVendedor'>" + item.funcionario.nome + "</td><td class='vendaProd'>" + produtosString + "</td><td class='vendaClient'>" + item.cliente.name + "</td><td class='vendaTotal'>R$ " + item.total + "</td></tr>");
     });
 
     dadosMainCard();
