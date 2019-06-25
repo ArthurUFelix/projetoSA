@@ -9,6 +9,7 @@ $(document).ready(function() {
         mask: true,
         validate: 'cpf',
         event: 'keyup',
+        handler: 'input#clientCPF',
         ifValid: function (input) { input.removeClass("is-invalid"); input.addClass("is-valid"); input.removeAttr('pattern'); },
         ifInvalid: function (input) { input.addClass("is-invalid"); input.removeClass("is-valid"); input.attr('pattern', 'blocked'); }
     });
@@ -91,6 +92,11 @@ $(document).ready(function() {
                     $('#clientCEP').addClass('is-invalid');
                     $(this).attr('pattern', 'blocked');
 
+                    $('#clientLog').val('');
+                    $('#clientBairro').val('');
+                    $('#clientCidade').val('');
+                    $('#clientEstado').val('');
+
                     return false
                 } else {
                     $('#clientCEP').addClass('is-valid');
@@ -106,6 +112,11 @@ $(document).ready(function() {
         } else {
             $(this).addClass('is-invalid');
             $(this).attr('pattern', 'blocked');
+
+            $('#clientLog').val('');
+            $('#clientBairro').val('');
+            $('#clientCidade').val('');
+            $('#clientEstado').val('');
 
             return false
         }

@@ -73,7 +73,7 @@ function dadosMainCard() {
         periodosMoney[month] += Number(item.total);
 
         // Calcula o melhor cliente
-        let queryCliente = clientes.filter(function(f) { return f.id === item.cliente.cpf; });
+        let queryCliente = clientes.filter(function(f) { return f.cpf === item.cliente.cpf; });
         if(queryCliente.length > 0) {
             let funcIndex = clientes.indexOf(...queryCliente);
             clientesQnt[funcIndex]++

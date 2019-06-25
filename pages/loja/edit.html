@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group md-form col-md-9">
                         <label for="lojaLog">Logradouro</label>
-                        <input type="text" class="form-control" id="lojaLog" required>
+                        <input type="text" class="form-control" id="lojaLog" required readonly>
                     </div>
                 </div>
                 <div class="form-row">
@@ -95,18 +95,18 @@
                     </div>
                     <div class="form-group md-form col-md-4">
                         <label for="lojaBairro">Bairro</label>
-                        <input type="text" class="form-control" id="lojaBairro" required>
+                        <input type="text" class="form-control" id="lojaBairro" required readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group md-form col-md-8">
                         <label for="lojaCidade">Cidade</label>
-                        <input type="text" class="form-control" id="lojaCidade" required>
+                        <input type="text" class="form-control" id="lojaCidade" required readonly>
                     </div>
                     <!-- Trocar isso por um select ou solicitar a UF -->
                     <div class="form-group md-form col-md-4">
                         <label for="lojaEstado">UF</label>
-                        <input type="text" class="form-control" id="lojaEstado" required>
+                        <input type="text" class="form-control" id="lojaEstado" required readonly>
                     </div>
                 </div>
                 <div class="form-row">
@@ -143,5 +143,12 @@
     <script type="text/javascript" src="../../js/auth.js"></script>
     <script type="text/javascript" src="../../js/index.js"></script>
     <script type="text/javascript" src="../../js/loja.js"></script>
+
+    <script>
+        var nome = $('#lojaName').val();
+        if(nome == "") {
+            $('header h1.display-4').text('Inserir informações da loja');
+        }
+    </script>
   </body>
 </html>

@@ -18,6 +18,8 @@ $(document).ready(function() {
     $('#lojaEmail').val(dadosLoja.email).trigger('focus');
     $('#lojaUrl').val(dadosLoja.url).trigger('focus');
     $('#lojaName').val(dadosLoja.nome).trigger('focus');
+
+    $(window).scrollTop(0);
 });
 
 /**************
@@ -29,6 +31,7 @@ $(document).ready(function() {
         mask: true,
         validate: 'cnpj',
         event: 'keyup',
+        handler: 'input#lojaCnpj',
         ifValid: function (input) { input.removeClass("is-invalid"); input.addClass("is-valid"); input.removeAttr('pattern'); },
         ifInvalid: function (input) { input.addClass("is-invalid"); input.removeClass("is-valid"); input.attr('pattern', 'blocked'); }
     });
@@ -87,6 +90,11 @@ $(document).ready(function() {
                     $('#lojaCEP').addClass('is-invalid');
                     $(this).attr('pattern', 'blocked');
 
+                    $('#lojaLog').val('');
+                    $('#lojaBairro').val('');
+                    $('#lojaCidade').val('');
+                    $('#lojaEstado').val('');
+
                     return false
                 } else {
                     $('#lojaCEP').addClass('is-valid');
@@ -102,6 +110,11 @@ $(document).ready(function() {
         } else {
             $(this).addClass('is-invalid');
             $(this).attr('pattern', 'blocked');
+
+            $('#lojaLog').val('');
+            $('#lojaBairro').val('');
+            $('#lojaCidade').val('');
+            $('#lojaEstado').val('');
 
             return false
         }
