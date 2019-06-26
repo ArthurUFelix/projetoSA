@@ -288,3 +288,9 @@ $(document).ready(function() {
         }
     });
 });
+exportar();
+function exportar() {
+    let string = localStorage.getItem('banco');
+    // use hasOwnProperty
+    console.log(string);
+}
