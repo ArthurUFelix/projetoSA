@@ -59,9 +59,6 @@
 
             <header class="jumbotron">
                 <h1 class="display-4">Nova Venda</h1>
-                <div class="text-right">
-                    <button class="btn btn-sm btn-info" id="btnAjuda" data-toggle="button" onclick="ajuda()">Ajuda</button>
-                </div>
             </header>
 
             <!-- <hr> -->
@@ -137,14 +134,5 @@
     <script type="text/javascript" src="../../js/index.js"></script>
     <script type="text/javascript" src="../../js/vendas.js"></script>
     
-    <script>
-        function ajuda() {
-            if($('#btnAjuda').hasClass('active')){
-                $('[data-toggle="tooltip"]').tooltip('dispose')
-            } else {
-                $('[data-toggle="tooltip"]').tooltip('show')
-            }
-        }
-    </script>
   </body>
 </html>
