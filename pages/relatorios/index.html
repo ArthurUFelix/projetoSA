@@ -127,8 +127,8 @@
                                 <textarea class="form-control" id="exportString" cols="30" rows="10"></textarea>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-primary">Copiar Código</button>
-                                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Fechar/button>
+                                <button type="button" class="btn btn-sm btn-primary" onclick="copiarCod()" data-toggle="tooltip" trigger="manual" title="Código copiado!" id="copy">Copiar Código</button>
+                                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Fechar</button>
                             </div>
                         </form> 
                     </div>
@@ -144,18 +144,18 @@
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form id="formImport" action="">
-                                <div class="modal-body">
-                                    
-                                    <h6>Cole o código de exportação abaixo.</h6>
-                                    <h6><b>Isso irá substituir o seu banco atual e não será possível desfazer esta ação!</b></h6>
-                                    <hr>
-                                    <textarea class="form-control" id="importString" cols="30" rows="10"></textarea>
+                            <div class="modal-body">
+                                <h6>Cole o código de exportação abaixo.</h6>
+                                <h6 style="font-weight: bold;">Isso irá substituir o seu banco atual e não será possível desfazer esta ação!</h6>
+                                <hr>
+                                <textarea class="form-control" id="importString" cols="30" rows="10" placeholder="Cole seu código de exportação aqui."></textarea>
+                                <div class="invalid-tooltip">
+                                    O código inserido é inválido!
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-sm btn-primary">Importar Dados</button>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-primary" id="import">Importar Dados</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -288,9 +288,49 @@ $(document).ready(function() {
         }
     });
 });
-exportar();
+
 function exportar() {
-    let string = localStorage.getItem('banco');
-    // use hasOwnProperty
-    console.log(string);
+    var string = localStorage.getItem('banco');
+    $('#exportString').val(string);
+    $('#modalExport').modal('toggle');
+}
+
+function copiarCod() {
+    var copyText = document.getElementById("exportString");
+    copyText.select();
+    document.execCommand("copy");
+
+    $('#copy').tooltip('show');
+}
+
+function importar() {
+    $('#modalImport').modal('toggle');
+    
+    $('#import').click(function() {
+        let string = $('#importString').val();
+
+        try {
+            let arr = JSON.parse(string);
+            let obj = arr[0];
+            let isValid = false;
+    
+            if(obj.hasOwnProperty('loja') &&
+                obj.hasOwnProperty('produtos') &&
+                obj.hasOwnProperty('clientes') &&
+                obj.hasOwnProperty('vendas') &&
+                obj.hasOwnProperty('funcionarios')) {
+                isValid = true;        
+            }
+    
+            if(isValid == false) {
+                $('#importString').addClass('is-invalid');
+            } else {
+                localStorage.setItem('banco', string);
+                location.reload();
+            }
+        }
+        catch(err) {
+            $('#importString').addClass('is-invalid');
+        }
+    });
 }
