@@ -55,29 +55,6 @@ $(document).ready(function() {
         }
     });
 
-    function verifyCPF() {
-        let clientes = banco[0].clientes;
-        let cpfField = $('#clientCPF');
-        let hasEquals = false;
-
-        clientes.forEach(function(item, index) {
-            if(cpfField.val() == item.cpf)
-                hasEquals = true;
-        });
-
-        if(hasEquals) {
-            cpfField.val('');
-            cpfField.removeClass('is-valid');
-            cpfField.addClass('is-invalid');
-            swal("Erro ao adicionar cliente!", "Já existe um cliente com o CPF informado, digite um CPF único", "error");
-
-            return false;
-        } else {
-            return true
-        }
-
-    }
-
     // Monitora o input de CEP para buscar o endereço
     $('#clientCEP').keyup(function() {
         // Remove o erro
@@ -90,7 +67,7 @@ $(document).ready(function() {
             $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {
                 if(data.erro == true) {
                     $('#clientCEP').addClass('is-invalid');
-                    $(this).attr('pattern', 'blocked');
+                    $('#clientCEP').attr('pattern', 'blocked');
 
                     $('#clientLog').val('');
                     $('#clientBairro').val('');
@@ -122,6 +99,31 @@ $(document).ready(function() {
         }
     });
 });
+
+function verifyCPF(clientId=null) {
+        let clientes = banco[0].clientes;
+        let cpfField = $('#clientCPF');
+        let hasEquals = false;
+
+        clientes.forEach(function(item, index) {
+            if(cpfField.val() == item.cpf) {
+                if(clientId != index)
+                    hasEquals = true;
+            }
+        });
+
+        if(hasEquals) {
+            cpfField.val('');
+            cpfField.removeClass('is-valid');
+            cpfField.addClass('is-invalid');
+            swal("Erro ao adicionar cliente!", "Já existe um cliente com o CPF informado, digite um CPF único", "error");
+
+            return false;
+        } else {
+            return true
+        }
+
+    }
 
 /**************
     index.html
@@ -184,26 +186,30 @@ $(document).ready(function(){
     }
 
     $('#edit-client-form').submit(function(event){
-        if($('#edit-client-form').is(':valid')) {
-            event.preventDefault();
+        event.preventDefault();
 
-            let dados = {
-                name        : $('#clientName').val(),
-                cpf         : $('#clientCPF').val(),
-                cep         : $('#clientCEP').val(),
-                logradouro  : $('#clientLog').val(),
-                numero      : $('#clientNumero').val(),
-                complemento : $('#clientComp').val(),
-                bairro      : $('#clientBairro').val(),
-                cidade      : $('#clientCidade').val(),
-                estado      : $('#clientEstado').val(),
-                phone       : $('#clientPhone').val(),
-                email       : $('#clientEmail').val()
-            };
-            let id = $('#clientId').val()
-            bancoUpdate("clientes", id, dados);
-    
-            location = location.href.replace("edit", "index").replace(location.search, '');
+        let cpfIsValid = verifyCPF($('#clientId').val());
+
+        if(cpfIsValid) {
+            if($('#edit-client-form').is(':valid')) {
+                let dados = {
+                    name        : $('#clientName').val(),
+                    cpf         : $('#clientCPF').val(),
+                    cep         : $('#clientCEP').val(),
+                    logradouro  : $('#clientLog').val(),
+                    numero      : $('#clientNumero').val(),
+                    complemento : $('#clientComp').val(),
+                    bairro      : $('#clientBairro').val(),
+                    cidade      : $('#clientCidade').val(),
+                    estado      : $('#clientEstado').val(),
+                    phone       : $('#clientPhone').val(),
+                    email       : $('#clientEmail').val()
+                };
+                let id = $('#clientId').val()
+                bancoUpdate("clientes", id, dados);
+        
+                location = location.href.replace("edit", "index").replace(location.search, '');
+            }
         }
     });
 });

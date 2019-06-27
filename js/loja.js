@@ -88,7 +88,7 @@ $(document).ready(function() {
             $.get( "https://viacep.com.br/ws/"+cep+"/json/", function( data ) {
                 if(data.erro == true) {
                     $('#lojaCEP').addClass('is-invalid');
-                    $(this).attr('pattern', 'blocked');
+                    $('#lojaCEP').attr('pattern', 'blocked');
 
                     $('#lojaLog').val('');
                     $('#lojaBairro').val('');
